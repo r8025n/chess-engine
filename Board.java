@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class Board {
 	JFrame frame;
-	JPanel spots[][]=new JPanel[8][8];
+	Spot spots[][]=new Spot[8][8];
 	
 	
 	Piece[] blackChessPieces=new Piece[] {
@@ -20,6 +20,7 @@ public class Board {
 	
 	Board(){
 		frame=new JFrame("Chess Game");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650,650);
 		frame.setLayout(new GridLayout(8,8));
 		setBlackPieces();
@@ -31,41 +32,31 @@ public class Board {
 	}
 	
 	void setBlackPieces(){
-		Spot temp;
-		for(int i=0;i<2;i++) {
-			for(int j=0;j<8;j++) {
-				if(i==0) 
-					temp=new Spot(i,j,blackChessPieces[j]);
-				else
-					temp=new Spot(i,j,new Pawn("black"));
-				
-				spots[i][j]=temp.getPanel();
-				frame.add(spots[i][j]);
-			}
+		for(int j=0;j<8;j++) {
+			spots[0][j]=new Spot(0,j,blackChessPieces[j]);
+			frame.add(spots[0][j]);
+		}
+		for(int j=0;j<8;j++) {
+			spots[1][j]=new Spot(1,j,new Pawn("black"));
+			frame.add(spots[1][j]);
 		}
 	}
 	
 	void setWhitePieces(){
-		Spot temp;
-		for(int i=7;i>5;i--) {
-			for(int j=0;j<8;j++) {
-				if(i==7) 
-					temp=new Spot(i,j,whiteChessPieces[j]);
-				else
-					temp=new Spot(i,j,new Pawn("white"));
-				
-				spots[i][j]=temp.getPanel();
-				frame.add(spots[i][j]);
-			}
+		for(int j=0;j<8;j++) {
+			spots[6][j]=new Spot(6,j,new Pawn("white"));
+			frame.add(spots[6][j]);
+		}
+		for(int j=0;j<8;j++) {
+			spots[7][j]=new Spot(7,j,whiteChessPieces[j]);
+			frame.add(spots[7][j]);
 		}
 	}
 	
 	void setEmptySpots() {
-		Spot temp;
 		for(int i=2;i<6;i++) {
 			for(int j=0;j<8;j++){
-				temp=new Spot(i,j,new EmptyPiece());
-				spots[i][j]=temp.getPanel();
+				spots[i][j]=new Spot(i,j,new EmptyPiece());
 				frame.add(spots[i][j]);
 			}
 		}
