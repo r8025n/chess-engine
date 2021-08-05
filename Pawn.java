@@ -4,6 +4,9 @@ public class Pawn extends Piece {
 	private String blackCode="\u265F";
 	private String pieceColor;
 	
+	static int[][] possibleMoves = {{1, 0}};
+		
+	
 	Pawn(String c){
 		this.pieceColor=c;
 	}
