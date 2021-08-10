@@ -6,8 +6,8 @@ public class Knight extends Piece {
 	private String pieceColor;
 	
 	static int[][] possibleMoves = {
-		{0, 1}, {0, -1},
-		{1, 0}, {-1, 0}
+		{2, 1}, {2, -1}, {-2, 1}, {-2, -1},
+		{1, 2}, {1, -2}, {-1, 2}, {-1, -2}
 	};
 	
 	Knight(String c) {

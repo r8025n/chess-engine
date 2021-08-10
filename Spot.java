@@ -61,11 +61,14 @@ public class Spot extends JPanel implements MouseListener{
 		for(int i = 0; i < len; i++) {
 			xx = x + currentPossibleMoves[i][0];
 			yy = y + currentPossibleMoves[i][1];
+
 			System.out.println("xx= "+xx+"  yy="+yy);
-			if(board.spots[xx][yy].isEmpty() && isMoveLegal(xx,yy)) {
+			
+			if(isMoveLegal(xx,yy) && board.spots[xx][yy].isEmpty()){
 				board.spots[xx][yy].toggleHighlighted();
 				board.spots[xx][yy].setBorder(blackline);
 			}
+			
 		}
 	}
 
