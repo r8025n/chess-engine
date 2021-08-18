@@ -22,11 +22,6 @@ public class Spot extends JPanel implements MouseListener{
 		this.board = board.get();
 		occupyingPiece = piece;
 		drawCode = piece.getCode();
-		// pieceLabel = new JLabel(drawCode, JLabel.CENTER);
-		// pieceLabel.setFont(pieceLabel.getFont().deriveFont(60f));
-		// this.add(pieceLabel);
-		// this.validate();
-		// this.repaint();
 		this.pieceLabel = Board.drawPieceLabel(this, drawCode);
 		this.addMouseListener(this);
 	}
@@ -86,19 +81,10 @@ public class Spot extends JPanel implements MouseListener{
 		if(! isHighlighted() && Board.tempCode == null){
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
-			Board.tempCode = drawCode;
-			Board.tempSpot = this;
-			Board.tempLabel = this.pieceLabel;
+			Board.setTempValues(this, this.pieceLabel, this.drawCode);
 		}
 		else if(Board.tempCode != null){
-			// this.drawCode = Board.tempCode;
-			// this.remove(this.pieceLabel);
 			Board.removePieceLabel(this, this.pieceLabel);
-			// this.pieceLabel = new JLabel(drawCode, JLabel.CENTER);
-			// this.pieceLabel.setFont(pieceLabel.getFont().deriveFont(60f));
-			// this.add(this.pieceLabel);
-			// this.validate();
-			// this.repaint();
 			this.pieceLabel = Board.drawPieceLabel(this, Board.tempCode);
 			Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
 			Board.tempCode = null;

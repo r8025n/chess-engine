@@ -8,6 +8,7 @@ public class Board {
 	static Spot tempSpot;
 	static String tempCode;
 	static JLabel tempLabel; 
+
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
 		{"p", "p", "p", "p", "p", "p", "p", "p"},
@@ -65,6 +66,11 @@ public class Board {
 
 		return label;
 	} 
+	static void setTempValues(Spot spot, JLabel label, String drawCode) {
+		tempSpot = spot;
+		tempCode = drawCode;
+		tempLabel = label; 
+	}
 
 	void setBlackPieces(){
 
