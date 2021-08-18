@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 import java.awt.event.*;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
@@ -11,6 +12,8 @@ public class Spot extends JPanel implements MouseListener{
 	Piece occupyingPiece;
 	Border blackline = BorderFactory.createLineBorder(Color.red);
 	Board board;
+	String drawCode;
+	JLabel pieceLabel;
 
 	Spot(int x,int y,Piece piece,Board board) {
 
@@ -18,10 +21,13 @@ public class Spot extends JPanel implements MouseListener{
 		this.y = y;
 		this.board = board.get();
 		occupyingPiece = piece;
-		String drawCode = piece.getCode();
-		JLabel pieceLabel = new JLabel(drawCode, JLabel.CENTER);
-		pieceLabel.setFont(pieceLabel.getFont().deriveFont(60f));
-		this.add(pieceLabel);
+		drawCode = piece.getCode();
+		// pieceLabel = new JLabel(drawCode, JLabel.CENTER);
+		// pieceLabel.setFont(pieceLabel.getFont().deriveFont(60f));
+		// this.add(pieceLabel);
+		// this.validate();
+		// this.repaint();
+		this.pieceLabel = Board.drawPieceLabel(this, drawCode);
 		this.addMouseListener(this);
 	}
 
@@ -55,14 +61,16 @@ public class Spot extends JPanel implements MouseListener{
 
 	void highlightSpots() {
 		int xx, yy, len;
-		int[][] currentPossibleMoves = Piece.returnPossibleMoves(occupyingPiece);
-		len = currentPossibleMoves.length;
+		ArrayList<IntPair> currentPossibleMoves = Piece.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		len = currentPossibleMoves.size();
 		System.out.println(len);
-		for(int i = 0; i < len; i++) {
-			xx = x + currentPossibleMoves[i][0];
-			yy = y + currentPossibleMoves[i][1];
 
-			System.out.println("xx= "+xx+"  yy="+yy);
+		for(int i = 0; i < len; i++) {
+			IntPair pair = currentPossibleMoves.get(i);
+			xx = pair.x_val;
+			yy = pair.y_val;
+
+			System.out.println("xx= "+ xx +"  yy="+ yy);
 			
 			if(isMoveLegal(xx,yy) && board.spots[xx][yy].isEmpty()){
 				board.spots[xx][yy].toggleHighlighted();
@@ -74,8 +82,28 @@ public class Spot extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("x= "+x+"  y="+y);
-		this.highlightSpots();
+		
+		if(! isHighlighted() && Board.tempCode == null){
+			System.out.println("x= " + x + "  y=" + y);
+			this.highlightSpots();
+			Board.tempCode = drawCode;
+			Board.tempSpot = this;
+			Board.tempLabel = this.pieceLabel;
+		}
+		else if(Board.tempCode != null){
+			// this.drawCode = Board.tempCode;
+			// this.remove(this.pieceLabel);
+			Board.removePieceLabel(this, this.pieceLabel);
+			// this.pieceLabel = new JLabel(drawCode, JLabel.CENTER);
+			// this.pieceLabel.setFont(pieceLabel.getFont().deriveFont(60f));
+			// this.add(this.pieceLabel);
+			// this.validate();
+			// this.repaint();
+			this.pieceLabel = Board.drawPieceLabel(this, Board.tempCode);
+			Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
+			Board.tempCode = null;
+
+		}
 
 	}
 

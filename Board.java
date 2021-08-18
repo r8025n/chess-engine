@@ -5,7 +5,19 @@ public class Board {
 
 	JFrame frame;
 	Spot spots[][] = new Spot[8][8];
-	
+	static Spot tempSpot;
+	static String tempCode;
+	static JLabel tempLabel; 
+	static String boardArray[][] = {
+		{"r", "k", "b", "q", "a", "b", "k", "r"},
+		{"p", "p", "p", "p", "p", "p", "p", "p"},
+		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{"P", "P", "P", "P", "P", "P", "P", "P"},
+		{"R", "K", "B", "Q", "A", "B", "K", "R"},
+	};
 	
 	Piece[] blackChessPieces = new Piece[] {
 			new Rook("black"), new Knight("black"), new Bishop("black"),
@@ -38,6 +50,22 @@ public class Board {
 	}
 
 	
+	static void removePieceLabel(Spot spot, JLabel label) {
+		spot.remove(label);
+		spot.validate();
+		spot.repaint();
+	}
+
+	static JLabel drawPieceLabel(Spot spot, String drawCode) {
+		JLabel label = new JLabel(drawCode, JLabel.CENTER);
+		label.setFont(label.getFont().deriveFont(60f));
+		spot.add(label);
+		spot.validate();
+		spot.repaint();
+
+		return label;
+	} 
+
 	void setBlackPieces(){
 
 		for(int j = 0; j < 8; j++) {

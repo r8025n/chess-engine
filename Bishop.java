@@ -1,13 +1,10 @@
+import java.util.*;
 
 public class Bishop extends Piece {
 
 	private String whiteCode = "\u2657";
 	private String blackCode = "\u265D";
-
-	static int[][] possibleMoves={
-		{1, 1}, {-1, -1},
-		{1, -1}, {-1, 1}
-	};
+	private String pieceColor;
 	
 	Bishop(String c) {
 
@@ -22,5 +19,18 @@ public class Bishop extends Piece {
 		else {
 			return whiteCode;
 		}
+	}
+
+	static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
+	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
+
+	static ArrayList<IntPair> possibleMoves(int x,int y) {
+		ArrayList<IntPair> kingMoves = new ArrayList<>();
+
+		for(int i = 0; i < 8; i++){
+			kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
+		}
+
+		return kingMoves;
 	}
 }

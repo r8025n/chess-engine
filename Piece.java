@@ -1,3 +1,5 @@
+import java.util.*;
+
 public abstract class Piece {
 
 	String whiteCode,blackCode;
@@ -7,21 +9,23 @@ public abstract class Piece {
 	
 	abstract String getCode();
 
-	static int[][] returnPossibleMoves(Piece occupyingPiece) {
+	static ArrayList<IntPair> returnPossibleMoves(Piece occupyingPiece, int x, int y) {
 		if(occupyingPiece instanceof King)
-			return King.possibleMoves;
+			return King.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Queen)
-			return Queen.possibleMoves;
+			return Queen.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Bishop)
-			return Bishop.possibleMoves;
+			return Bishop.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Knight)
-			return Knight.possibleMoves;
+			return Knight.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Rook)
-			return Rook.possibleMoves;
+			return Rook.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Pawn)
-			return Pawn.possibleMoves;
+			return Pawn.possibleMoves(x, y);
 		else
-			return EmptyPiece.possibleMoves;
+			return EmptyPiece.possibleMoves(x, y);
 	}
+
+	//abstract ArrayList possibleMoves(int x, int y);
 	
 }
