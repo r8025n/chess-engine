@@ -7,7 +7,8 @@ public class Board {
 	Spot spots[][] = new Spot[8][8];
 	static Spot tempSpot;
 	static String tempCode;
-	static JLabel tempLabel; 
+	static JLabel tempLabel;
+	static Piece tempPiece; 
 
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
@@ -17,7 +18,7 @@ public class Board {
 		{" ", " ", " ", " ", " ", " ", " ", " "},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
 		{"P", "P", "P", "P", "P", "P", "P", "P"},
-		{"R", "K", "B", "Q", "A", "B", "K", "R"},
+		{"R", "K", "B", "Q", "A", "B", "K", "R"}
 	};
 	
 	Piece[] blackChessPieces = new Piece[] {
@@ -66,8 +67,9 @@ public class Board {
 
 		return label;
 	} 
-	static void setTempValues(Spot spot, JLabel label, String drawCode) {
+	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode) {
 		tempSpot = spot;
+		tempPiece = piece;
 		tempCode = drawCode;
 		tempLabel = label; 
 	}

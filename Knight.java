@@ -24,17 +24,17 @@ public class Knight extends Piece {
 		}
 	}
 
-	static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
-	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
+	static int[] xx = {2, 2, -2, -2, 1, 1, -1, -1};
+	static int[] yy = {1, -1, 1, -1, 2, -2, 2, -2};
 
 	static ArrayList<IntPair> possibleMoves(int x,int y) {
-		ArrayList<IntPair> kingMoves = new ArrayList<>();
+		ArrayList<IntPair> knightMoves = new ArrayList<>();
 
-		for(int i = 0; i < 8; i++){
-			kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
+		for(int i = 0; i < 8; i++) {
+			knightMoves.add(new IntPair(x + xx[i], y + yy[i]));
 		}
 
-		return kingMoves;
+		return knightMoves;
 	}
 
 }

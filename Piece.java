@@ -2,10 +2,8 @@ import java.util.*;
 
 public abstract class Piece {
 
-	String whiteCode,blackCode;
+	String whiteCode, blackCode;
 	String pieceColor = "";
-	//int[][] possibleMoves;
-	
 	
 	abstract String getCode();
 

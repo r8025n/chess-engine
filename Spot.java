@@ -10,10 +10,12 @@ public class Spot extends JPanel implements MouseListener{
 	private int x, y;
 	private boolean empty = true, highlighted = false;
 	Piece occupyingPiece;
-	Border blackline = BorderFactory.createLineBorder(Color.red);
+	Border redBorder = BorderFactory.createLineBorder(Color.red);
+	Border emptyBorder = BorderFactory.createEmptyBorder();
 	Board board;
 	String drawCode;
 	JLabel pieceLabel;
+	ArrayList<IntPair> currentPossibleMoves;
 
 	Spot(int x,int y,Piece piece,Board board) {
 
@@ -46,49 +48,84 @@ public class Spot extends JPanel implements MouseListener{
 		return highlighted;
 	}
 
-	boolean isMoveLegal(int x, int y) {
+	static boolean isMoveLegal(int x, int y) {
 
-		if(x >= 0 && x < 8 && y >= 0 && y < 8)
+		if((x >= 0 && x < 8) && (y >= 0 && y < 8))
 			return true;
 		else
 			return false;
 	}
 
-	void highlightSpots() {
-		int xx, yy, len;
-		ArrayList<IntPair> currentPossibleMoves = Piece.returnPossibleMoves(occupyingPiece, this.x, this.y);
-		len = currentPossibleMoves.size();
-		System.out.println(len);
+	void setValues(Piece piece, String code) {
+		this.occupyingPiece = piece;
+		this.drawCode = code; 
+	}
 
-		for(int i = 0; i < len; i++) {
+	void highlightAll(ArrayList<IntPair> currentPossibleMoves) {
+		int xx, yy;
+
+		for(int i = 0; i < currentPossibleMoves.size(); i++) {
+			IntPair pair = currentPossibleMoves.get(i);
+			xx = pair.x_val;
+			yy = pair.y_val;
+			
+			if(isMoveLegal(xx,yy) && board.spots[xx][yy].isEmpty()){
+				//System.out.println("xx= "+ xx +"  yy="+ yy);
+				board.spots[xx][yy].toggleHighlighted();
+				board.spots[xx][yy].setBorder(redBorder);
+			}
+			else{
+				currentPossibleMoves.remove(i);
+				i--;
+			}
+		}
+	}
+
+	void unHighlightAll(ArrayList<IntPair> currentPossibleMoves) {
+		int xx, yy;
+
+		System.out.println("length = " + currentPossibleMoves.size());
+		for(int i = 0; i < currentPossibleMoves.size(); i++) {
 			IntPair pair = currentPossibleMoves.get(i);
 			xx = pair.x_val;
 			yy = pair.y_val;
 
-			System.out.println("xx= "+ xx +"  yy="+ yy);
-			
-			if(isMoveLegal(xx,yy) && board.spots[xx][yy].isEmpty()){
-				board.spots[xx][yy].toggleHighlighted();
-				board.spots[xx][yy].setBorder(blackline);
-			}
+			board.spots[xx][yy].toggleHighlighted();
+			board.spots[xx][yy].setBorder(emptyBorder);
 			
 		}
+
+		//currentPossibleMoves.clear();
+	}
+
+
+	void highlightSpots() {
+		currentPossibleMoves = Piece.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		highlightAll(this.currentPossibleMoves);
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		if(! isHighlighted() && Board.tempCode == null){
+			//System.out.println("obay dhuki laisi");
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
-			Board.setTempValues(this, this.pieceLabel, this.drawCode);
+			Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode);
+			this.toggleEmpty();
 		}
-		else if(Board.tempCode != null){
+		else if(Board.tempCode != null && isHighlighted()){
 			Board.removePieceLabel(this, this.pieceLabel);
-			this.pieceLabel = Board.drawPieceLabel(this, Board.tempCode);
+			setValues(Board.tempPiece, Board.tempCode);
+			this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
+			//this.occupyingPiece = Board.tempPiece;
 			Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
 			Board.tempCode = null;
-
+			unHighlightAll(Board.tempSpot.currentPossibleMoves);
+			Board.tempSpot.currentPossibleMoves.clear();
+			this.toggleEmpty();
+			//System.out.println("kam sesh");
 		}
 
 	}
