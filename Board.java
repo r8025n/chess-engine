@@ -6,9 +6,10 @@ public class Board {
 	JFrame frame;
 	Spot spots[][] = new Spot[8][8];
 	static Spot tempSpot;
-	static String tempCode, temp_x, temp_y;
+	static String tempCode;
 	static JLabel tempLabel;
-	static Piece tempPiece; 
+	static Piece tempPiece;
+	static int temp_x, temp_y; 
 
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
@@ -51,6 +52,12 @@ public class Board {
 		return this;
 	}
 
+	static void updateBoardArray(int old_x, int old_y, int new_x, int new_y) {
+		
+		boardArray[new_x][new_y] = boardArray[old_x][old_y];
+		boardArray[old_x][old_y] = " ";
+	}
+
 	
 	static void removePieceLabel(Spot spot, JLabel label) {
 		spot.remove(label);
@@ -67,7 +74,7 @@ public class Board {
 
 		return label;
 	} 
-	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode, String x, String y) {
+	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode, int x, int y) {
 		tempSpot = spot;
 		tempPiece = piece;
 		tempCode = drawCode;
@@ -75,6 +82,7 @@ public class Board {
 		temp_x = x;
 		temp_y = y; 
 	}
+
 
 	void setBlackPieces(){
 

@@ -115,9 +115,9 @@ public class Spot extends JPanel implements MouseListener{
 		if(! isHighlighted() && Board.tempCode == null){
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
-			
+
 			if(!noMovePossible()) {
-				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode);
+				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode, this.x, this.y);
 				this.toggleEmpty();
 			}
 		}
@@ -129,6 +129,7 @@ public class Spot extends JPanel implements MouseListener{
 			Board.tempCode = null;
 			unHighlightAll(Board.tempSpot.currentPossibleMoves);
 			Board.tempSpot.currentPossibleMoves.clear();
+			Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
 			this.toggleEmpty();
 		}
 
