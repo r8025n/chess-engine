@@ -6,7 +6,7 @@ public class Board {
 	JFrame frame;
 	Spot spots[][] = new Spot[8][8];
 	static Spot tempSpot;
-	static String tempCode;
+	static String tempCode, temp_x, temp_y;
 	static JLabel tempLabel;
 	static Piece tempPiece; 
 
@@ -67,11 +67,13 @@ public class Board {
 
 		return label;
 	} 
-	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode) {
+	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode, String x, String y) {
 		tempSpot = spot;
 		tempPiece = piece;
 		tempCode = drawCode;
-		tempLabel = label; 
+		tempLabel = label;
+		temp_x = x;
+		temp_y = y; 
 	}
 
 	void setBlackPieces(){
