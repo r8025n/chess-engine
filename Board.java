@@ -83,7 +83,7 @@ public class Board {
 		}
 
 		for(int j = 0; j < 8; j++) {
-			spots[1][j] = new Spot(1, j, new Pawn("black"), this);
+			spots[1][j] = new Spot(1, j, new BlackPawn(), this);
 			spots[1][j].toggleEmpty();
 			frame.add(spots[1][j]);
 		}
@@ -92,7 +92,7 @@ public class Board {
 	void setWhitePieces(){
 		
 		for(int j = 0; j < 8; j++) {
-			spots[6][j] = new Spot(6, j, new Pawn("white"), this);
+			spots[6][j] = new Spot(6, j, new WhitePawn(), this);
 			spots[6][j].toggleEmpty();
 			frame.add(spots[6][j]);
 		}

@@ -83,8 +83,6 @@ public class Spot extends JPanel implements MouseListener{
 
 	void unHighlightAll(ArrayList<IntPair> currentPossibleMoves) {
 		int xx, yy;
-
-		System.out.println("length = " + currentPossibleMoves.size());
 		for(int i = 0; i < currentPossibleMoves.size(); i++) {
 			IntPair pair = currentPossibleMoves.get(i);
 			xx = pair.x_val;
@@ -94,8 +92,6 @@ public class Spot extends JPanel implements MouseListener{
 			board.spots[xx][yy].setBorder(emptyBorder);
 			
 		}
-
-		//currentPossibleMoves.clear();
 	}
 
 
@@ -109,7 +105,6 @@ public class Spot extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 		if(! isHighlighted() && Board.tempCode == null){
-			//System.out.println("obay dhuki laisi");
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
 			Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode);
@@ -119,13 +114,11 @@ public class Spot extends JPanel implements MouseListener{
 			Board.removePieceLabel(this, this.pieceLabel);
 			setValues(Board.tempPiece, Board.tempCode);
 			this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
-			//this.occupyingPiece = Board.tempPiece;
 			Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
 			Board.tempCode = null;
 			unHighlightAll(Board.tempSpot.currentPossibleMoves);
 			Board.tempSpot.currentPossibleMoves.clear();
 			this.toggleEmpty();
-			//System.out.println("kam sesh");
 		}
 
 	}

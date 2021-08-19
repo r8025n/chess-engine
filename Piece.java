@@ -18,12 +18,12 @@ public abstract class Piece {
 			return Knight.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Rook)
 			return Rook.possibleMoves(x, y);
-		else if(occupyingPiece instanceof Pawn)
-			return Pawn.possibleMoves(x, y);
+		else if(occupyingPiece instanceof BlackPawn)
+			return BlackPawn.possibleMoves(x, y);
+		else if(occupyingPiece instanceof WhitePawn)
+			return WhitePawn.possibleMoves(x, y);
 		else
 			return EmptyPiece.possibleMoves(x, y);
 	}
-
-	//abstract ArrayList possibleMoves(int x, int y);
 	
 }
