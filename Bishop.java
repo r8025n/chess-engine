@@ -21,16 +21,37 @@ public class Bishop extends Piece {
 		}
 	}
 
-	static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
-	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
-
 	static ArrayList<IntPair> possibleMoves(int x,int y) {
-		ArrayList<IntPair> kingMoves = new ArrayList<>();
+		ArrayList<IntPair> bishopMoves = new ArrayList<>();
 
-		for(int i = 0; i < 8; i++){
-			kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
+		for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++){
+			if(Board.boardArray[i][j] == " ")
+				bishopMoves.add(new IntPair(i, j));
+			else
+				break;
 		}
 
-		return kingMoves;
+		for(int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--){
+			if(Board.boardArray[i][j] == " ")
+				bishopMoves.add(new IntPair(i, j));
+			else
+				break;
+		}
+
+		for(int i = x + 1, j = y - 1; i < 8 && j >= 0; i++, j--){
+			if(Board.boardArray[i][j] == " ")
+				bishopMoves.add(new IntPair(i, j));
+			else
+				break;
+		}
+
+		for(int i = x - 1, j = y + 1; i >= 0 && j < 8; i--, j++){
+			if(Board.boardArray[i][j] == " ")
+				bishopMoves.add(new IntPair(i, j));
+			else
+				break;
+		}
+
+		return bishopMoves;
 	}
 }
