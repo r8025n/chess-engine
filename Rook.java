@@ -32,7 +32,7 @@ public class Rook extends Piece {
 
 		}
 
-		for(int i = x - 1; i >= 8; i--){
+		for(int i = x - 1; i >= 0; i--){
 			if(Board.boardArray[i][y] == " ")
 				rookMoves.add(new IntPair(i, y));
 			else

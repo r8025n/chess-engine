@@ -21,6 +21,8 @@ public class Queen extends Piece {
 	static ArrayList<IntPair> possibleMoves(int x,int y) {
 		ArrayList<IntPair> queenMoves = new ArrayList<>();
 
+		// horizontal moves
+
 		for(int i = x + 1; i < 8; i++) {
 			if(Board.boardArray[i][y] == " ")
 				queenMoves.add(new IntPair(i, y));
@@ -29,7 +31,7 @@ public class Queen extends Piece {
 
 		}
 
-		for(int i = x - 1; i >= 8; i--) {
+		for(int i = x - 1; i >= 0; i--) {
 			if(Board.boardArray[i][y] == " ")
 				queenMoves.add(new IntPair(i, y));
 			else
@@ -50,6 +52,8 @@ public class Queen extends Piece {
 			else
 				break;
 		}
+
+		// diagonal moves
 
 		for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {
 			if(Board.boardArray[i][j] == " ")
