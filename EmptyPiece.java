@@ -15,10 +15,10 @@ public class EmptyPiece extends Piece {
 	static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
 	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
 
-	static ArrayList<IntPair> possibleMoves(int x,int y) {
-		ArrayList<IntPair> kingMoves = new ArrayList<>();
+	static ArrayList<IntPair> possibleMoves(int x, int y) {
+		ArrayList<IntPair> emptyMoves = new ArrayList<>();
 
-		return kingMoves;
+		return emptyMoves;
 	}
 
 }

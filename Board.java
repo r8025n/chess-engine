@@ -35,7 +35,6 @@ public class Board {
 	};
 	
 	Board(){
-
 		frame= new JFrame("Chess Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650, 650);
@@ -52,8 +51,7 @@ public class Board {
 		return this;
 	}
 
-	static void updateBoardArray(int old_x, int old_y, int new_x, int new_y) {
-		
+	static void updateBoardArray(int old_x, int old_y, int new_x, int new_y) {	
 		boardArray[new_x][new_y] = boardArray[old_x][old_y];
 		boardArray[old_x][old_y] = " ";
 	}
@@ -74,6 +72,7 @@ public class Board {
 
 		return label;
 	} 
+	
 	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode, int x, int y) {
 		tempSpot = spot;
 		tempPiece = piece;
@@ -85,7 +84,6 @@ public class Board {
 
 
 	void setBlackPieces(){
-
 		for(int j = 0; j < 8; j++) {
 			spots[0][j] = new Spot(0, j, blackChessPieces[j], this);
 			spots[0][j].toggleEmpty();
@@ -99,8 +97,7 @@ public class Board {
 		}
 	}
 	
-	void setWhitePieces(){
-		
+	void setWhitePieces(){	
 		for(int j = 0; j < 8; j++) {
 			spots[6][j] = new Spot(6, j, new WhitePawn(), this);
 			spots[6][j].toggleEmpty();
@@ -115,7 +112,6 @@ public class Board {
 	}
 	
 	void setEmptySpots() {
-		
 		for(int i = 2; i < 6; i++) {
 			for(int j = 0; j < 8; j++){
 				spots[i][j] = new Spot(i, j, new EmptyPiece(), this);
@@ -125,7 +121,6 @@ public class Board {
 	}
 	
 	void setBackgroundColors() {
-		
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
 				if(i%2 == 0) {

@@ -4,9 +4,6 @@ public class Rook extends Piece {
 	private String whiteCode="\u2656";
 	private String blackCode="\u265C";
 	private String pieceColor;
-	
-	// static int[][] possibleMoves = {{0, 1}, {0, -1},
-	// 	{1, 0}, {-1, 0}};
 
 	Rook(String c){
 		this.pieceColor=c;
@@ -21,7 +18,7 @@ public class Rook extends Piece {
 		}
 	}
 
-	static ArrayList<IntPair> possibleMoves(int x,int y) {
+	static ArrayList<IntPair> possibleMoves(int x, int y) {
 		ArrayList<IntPair> rookMoves = new ArrayList<>();
 
 		for(int i = x + 1; i < 8; i++){

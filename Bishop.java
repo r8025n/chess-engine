@@ -21,7 +21,7 @@ public class Bishop extends Piece {
 		}
 	}
 
-	static ArrayList<IntPair> possibleMoves(int x,int y) {
+	static ArrayList<IntPair> possibleMoves(int x, int y) {
 		ArrayList<IntPair> bishopMoves = new ArrayList<>();
 
 		for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {

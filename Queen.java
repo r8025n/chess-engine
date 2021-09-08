@@ -18,7 +18,7 @@ public class Queen extends Piece {
 		}
 	}
 
-	static ArrayList<IntPair> possibleMoves(int x,int y) {
+	static ArrayList<IntPair> possibleMoves(int x, int y) {
 		ArrayList<IntPair> queenMoves = new ArrayList<>();
 
 		// horizontal moves

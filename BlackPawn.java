@@ -9,9 +9,11 @@ public class BlackPawn extends Piece {
 		return blackCode;
 	}
 
-	static ArrayList<IntPair> possibleMoves(int x,int y) {
+	static ArrayList<IntPair> possibleMoves(int x, int y) {
 		ArrayList<IntPair> blackPawnMoves = new ArrayList<>();
-		blackPawnMoves.add(new IntPair(x + 1, y));
+		
+		if(Spot.isMoveLegal(x + 1, y) && Board.boardArray[x + 1][y] == " ")
+			blackPawnMoves.add(new IntPair(x + 1, y));
 		
 		return blackPawnMoves;
 	}

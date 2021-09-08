@@ -5,5 +5,4 @@ public class StartGame {
 		new Board();
 
 	}
-
 }

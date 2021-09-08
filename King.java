@@ -10,11 +10,12 @@ public class King extends Piece{
 	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
 
 
-	static ArrayList<IntPair> possibleMoves(int x,int y) {
+	static ArrayList<IntPair> possibleMoves(int x, int y) {
 		ArrayList<IntPair> kingMoves = new ArrayList<>();
 
 		for(int i = 0; i < 8; i++){
-			kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
+			if(Spot.isMoveLegal(x + xx[i], y + yy[i]) && Board.boardArray[x + xx[i]][y + yy[i]] == " ")
+				kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
 		}
 
 		return kingMoves;
