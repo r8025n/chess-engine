@@ -14,7 +14,7 @@ public class King extends Piece{
 		ArrayList<IntPair> kingMoves = new ArrayList<>();
 
 		for(int i = 0; i < 8; i++){
-			if(Spot.isMoveLegal(x + xx[i], y + yy[i]) && Board.boardArray[x + xx[i]][y + yy[i]] == " ")
+			if(MoveControl.isMoveLegal(x + xx[i], y + yy[i]) && Board.boardArray[x + xx[i]][y + yy[i]] == " ")
 				kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
 		}
 

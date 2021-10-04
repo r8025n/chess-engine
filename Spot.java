@@ -42,43 +42,23 @@ public class Spot extends JPanel implements MouseListener{
 		return highlighted;
 	}
 
-	static boolean isMoveLegal(int x, int y) {
-		if((x >= 0 && x < 8) && (y >= 0 && y < 8))
-			return true;
-		else
-			return false;
-	}
+	// static boolean isMoveLegal(int x, int y) {
+	// 	if((x >= 0 && x < 8) && (y >= 0 && y < 8))
+	// 		return true;
+	// 	else
+	// 		return false;
+	// }
 
 	void setValues(Piece piece, String code) {
 		this.occupyingPiece = piece;
 		this.drawCode = code; 
 	}
 
-	boolean noMovePossible(){
-		if(currentPossibleMoves.size() == 0)
-			return true;
+	// boolean noMovePossible(){
+	// 	if(currentPossibleMoves.size() == 0)
+	// 		return true;
 
-		return false;
-	}
-
-	// void highlightAll(ArrayList<IntPair> currentPossibleMoves) {
-	// 	int xx, yy;
-
-	// 	for(int i = 0; i < currentPossibleMoves.size(); i++) {
-	// 		IntPair pair = currentPossibleMoves.get(i);
-	// 		xx = pair.x_val;
-	// 		yy = pair.y_val;
-			
-	// 		if(isMoveLegal(xx,yy) && board.spots[xx][yy].isEmpty()){
-	// 			//System.out.println("xx= "+ xx +"  yy="+ yy);
-	// 			board.spots[xx][yy].toggleHighlighted();
-	// 			board.spots[xx][yy].setBorder(redBorder);
-	// 		}
-	// 		else{
-	// 			currentPossibleMoves.remove(i);
-	// 			i--;
-	// 		}
-	// 	}
+	// 	return false;
 	// }
 
 	void unHighlightAll(ArrayList<IntPair> currentPossibleMoves) {
@@ -95,19 +75,11 @@ public class Spot extends JPanel implements MouseListener{
 		}
 	}
 
-
-	// void highlightSpots() {
-	// 	currentPossibleMoves = Piece.returnPossibleMoves(occupyingPiece, this.x, this.y);
-
-	// 	if(!noMovePossible())
-	// 		highlightAll(this.currentPossibleMoves);
-	// }
-
 	void highlightSpots() {
-		currentPossibleMoves = Piece.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		currentPossibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
 		int xx, yy;
 
-		if(!noMovePossible())
+		if(! MoveControl.noMovePossible(currentPossibleMoves))
 	 		for(int i = 0; i < this.currentPossibleMoves.size(); i++) {
 				IntPair pair = currentPossibleMoves.get(i);
 				xx = pair.x_val;
@@ -124,7 +96,7 @@ public class Spot extends JPanel implements MouseListener{
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
 
-			if(! noMovePossible()) {
+			if(! MoveControl.noMovePossible(currentPossibleMoves)) {
 				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode, this.x, this.y);
 				this.toggleEmpty();
 			}
