@@ -14,7 +14,7 @@ public class Spot extends JPanel implements MouseListener{
 	Board board;
 	String drawCode;
 	JLabel pieceLabel;
-	ArrayList<IntPair> currentPossibleMoves;
+	ArrayList<IntPair> currentPossibleMoves = new ArrayList<>();
 
 	Spot(int x,int y,Piece piece,Board board) {
 		this.x = x;
@@ -76,8 +76,16 @@ public class Spot extends JPanel implements MouseListener{
 	}
 
 	void highlightSpots() {
-		currentPossibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
-		int xx, yy;
+		String possibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		int moves = possibleMoves.length() / 5;
+		int k = 0, xx, yy;;
+
+		for(int i = 0; i < moves; i++) {
+			xx = possibleMoves.charAt(k + 2) - '0';
+			yy = possibleMoves.charAt(k + 3) - '0';
+			currentPossibleMoves.add(new IntPair(xx, yy));
+			k += 5;
+		}
 
 		if(! MoveControl.noMovePossible(currentPossibleMoves))
 	 		for(int i = 0; i < this.currentPossibleMoves.size(); i++) {

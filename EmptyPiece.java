@@ -12,11 +12,8 @@ public class EmptyPiece extends Piece {
 		return emptyString;
 	}
 
-	static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
-	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
-
-	static ArrayList<IntPair> possibleMoves(int x, int y) {
-		ArrayList<IntPair> emptyMoves = new ArrayList<>();
+	static String possibleMoves(int x, int y) {
+		String emptyMoves = "";
 
 		return emptyMoves;
 	}

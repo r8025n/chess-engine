@@ -2,12 +2,22 @@ import java.util.*;
 
 public class MoveControl {
 
-	static boolean isMoveLegal(int x, int y) {
+	static boolean isMoveInBound(int x, int y) {
 		if((x >= 0 && x < 8) && (y >= 0 && y < 8))
 			return true;
 		else
 			return false;
 	}
+
+	static boolean isMoveLegal(int x, int y, int xx, int yy) {
+		if(MoveControl.isMoveInBound(x + xx, y + yy)){
+			if(Board.boardArray[x + xx][y + yy] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + xx][y + yy]))
+				return true;
+		}
+
+		return false;
+	}
+
 
 	static boolean noMovePossible(ArrayList<IntPair> currentPossibleMoves){
 		if(currentPossibleMoves.size() == 0)
@@ -17,7 +27,7 @@ public class MoveControl {
 	}
 
 
-	static ArrayList<IntPair> returnPossibleMoves(Piece occupyingPiece, int x, int y) {
+	static String returnPossibleMoves(Piece occupyingPiece, int x, int y) {
 		if(occupyingPiece instanceof King)
 			return King.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Queen)

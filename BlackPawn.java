@@ -9,17 +9,29 @@ public class BlackPawn extends Piece {
 		return blackCode;
 	}
 
-	static ArrayList<IntPair> possibleMoves(int x, int y) {
-		ArrayList<IntPair> blackPawnMoves = new ArrayList<>();
+	static String possibleMoves(int x, int y) {
+		String blackPawnMoves = "";
+		String temp = "";
 		
-		if(MoveControl.isMoveLegal(x + 1, y) && Board.boardArray[x + 1][y] == " ")
-			blackPawnMoves.add(new IntPair(x + 1, y));
+		if(MoveControl.isMoveInBound(x + 1, y) && Board.boardArray[x + 1][y] == " ") {
+			// blackPawnMoves.add(new IntPair(x + 1, y));\
+			temp = "" + x + y + (x + 1) + y + Board.boardArray[x + 1][y];
+			//temp = String.format("%s%s%s%s%s",x,y,(x+1),y,Board.boardArray[x+1][y]);
+			System.out.println("bp move= " + temp);
+			blackPawnMoves += temp;
+		}
 
-		if(MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1]))
-			blackPawnMoves.add(new IntPair(x + 1, y - 1));
+		if(MoveControl.isMoveInBound(x + 1, y - 1) && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1])) {
+			// blackPawnMoves.add(new IntPair(x + 1, y - 1));
+			temp = "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
+			blackPawnMoves += temp;
+		}
 
-		if(MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y + 1]))
-			blackPawnMoves.add(new IntPair(x + 1, y + 1));
+		if(MoveControl.isMoveInBound(x + 1, y + 1) && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y + 1])) {
+			// blackPawnMoves.add(new IntPair(x + 1, y + 1));
+			temp = "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
+			blackPawnMoves += temp;
+		}
 		
 		return blackPawnMoves;
 	}

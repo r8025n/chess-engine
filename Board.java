@@ -38,7 +38,7 @@ public class Board {
 		frame= new JFrame("Chess Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650, 650);
-		frame.setLayout(new GridLayout(8,8));
+		frame.setLayout(new GridLayout(8, 8));
 		setBlackPieces();
 		setEmptySpots();
 		setWhitePieces();

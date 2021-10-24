@@ -21,33 +21,46 @@ public class Bishop extends Piece {
 		}
 	}
 
-	static ArrayList<IntPair> possibleMoves(int x, int y) {
-		ArrayList<IntPair> bishopMoves = new ArrayList<>();
+	static String possibleMoves(int x, int y) {
+		String bishopMoves = "";
+		String temp = "";
 
 		for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {
-			if(Board.boardArray[i][j] == " ")
-				bishopMoves.add(new IntPair(i, j));
+			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+				// bishopMoves.add(new IntPair(i, j));
+				temp = "" + x + y + i + j + Board.boardArray[i][j];
+				bishopMoves += temp;
+			}
 			else
 				break;
 		}
 
 		for(int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
-			if(Board.boardArray[i][j] == " ")
-				bishopMoves.add(new IntPair(i, j));
+			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+				// bishopMoves.add(new IntPair(i, j));
+				temp = "" + x + y + i + j + Board.boardArray[i][j];
+				bishopMoves += temp;
+			}
 			else
 				break;
 		}
 
 		for(int i = x + 1, j = y - 1; i < 8 && j >= 0; i++, j--) {
-			if(Board.boardArray[i][j] == " ")
-				bishopMoves.add(new IntPair(i, j));
+			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+				// bishopMoves.add(new IntPair(i, j));
+				temp = "" + x + y + i + j + Board.boardArray[i][j];
+				bishopMoves += temp;
+			}
 			else
 				break;
 		}
 
 		for(int i = x - 1, j = y + 1; i >= 0 && j < 8; i--, j++){
-			if(Board.boardArray[i][j] == " ")
-				bishopMoves.add(new IntPair(i, j));
+			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+				// bishopMoves.add(new IntPair(i, j));
+				temp = "" + x + y + i + j + Board.boardArray[i][j];
+				bishopMoves += temp;
+			}
 			else
 				break;
 		}
