@@ -40,4 +40,8 @@ public class King extends Piece{
 			return whiteCode;
 		}
 	}
+
+	String getColor() {
+		return this.pieceColor;
+	}
 }

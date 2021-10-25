@@ -19,6 +19,10 @@ public class ComputerPawn extends Piece {
 		}
 	}
 
+	String getColor() {
+		return this.pieceColor;
+	}
+
 	static String possibleMoves(int x, int y) {
 		String computerPawnMoves = "";
 		String temp = "";

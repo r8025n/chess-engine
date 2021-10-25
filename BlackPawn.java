@@ -8,6 +8,10 @@ public class BlackPawn extends Piece {
 	String getCode() {
 		return blackCode;
 	}
+	
+	String getColor() {
+		return this.pieceColor;
+	}
 
 	static String possibleMoves(int x, int y) {
 		String blackPawnMoves = "";

@@ -9,6 +9,10 @@ public class WhitePawn extends Piece {
 		return whiteCode;
 	}
 
+	String getColor() {
+		return this.pieceColor;
+	}
+
 	static String possibleMoves(int x, int y) {
 		String whitePawnMoves = "";
 		String temp = "";

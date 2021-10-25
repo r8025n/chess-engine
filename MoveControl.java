@@ -10,7 +10,7 @@ public class MoveControl {
 	}
 
 	static boolean isMoveLegal(int x, int y, int xx, int yy) {
-		if(MoveControl.isMoveInBound(x + xx, y + yy)){
+		if(MoveControl.isMoveInBound(x + xx, y + yy)) {
 			if(Board.boardArray[x + xx][y + yy] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + xx][y + yy]))
 				return true;
 		}
@@ -19,7 +19,7 @@ public class MoveControl {
 	}
 
 
-	static boolean noMovePossible(ArrayList<IntPair> currentPossibleMoves){
+	static boolean noMovePossible(ArrayList<IntPair> currentPossibleMoves) {
 		if(currentPossibleMoves.size() == 0)
 			return true;
 

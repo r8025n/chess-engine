@@ -12,7 +12,7 @@ public class Spot extends JPanel implements MouseListener{
 	Border redBorder = BorderFactory.createLineBorder(Color.red);
 	Border emptyBorder = BorderFactory.createEmptyBorder();
 	Board board;
-	String drawCode;
+	String drawCode, pieceColor;
 	JLabel pieceLabel;
 	ArrayList<IntPair> currentPossibleMoves = new ArrayList<>();
 
@@ -22,6 +22,7 @@ public class Spot extends JPanel implements MouseListener{
 		this.board = board.get();
 		occupyingPiece = piece;
 		drawCode = piece.getCode();
+		pieceColor = piece.getColor();
 		this.pieceLabel = Board.drawPieceLabel(this, drawCode);
 		this.addMouseListener(this);
 	}
@@ -100,13 +101,14 @@ public class Spot extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		if(! isHighlighted() && Board.tempCode == null && ! isEmpty()){
+
+		// if(Board.humanColor.equals(this.pieceColor)){
+		if(! isHighlighted() && Board.tempCode == null && ! isEmpty() && Board.humanColor.equals(this.pieceColor)){
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
 
 			if(! MoveControl.noMovePossible(currentPossibleMoves)) {
-				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode, this.x, this.y);
+				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode, this.pieceColor, this.x, this.y);
 				this.toggleEmpty();
 			}
 		}
@@ -116,12 +118,14 @@ public class Spot extends JPanel implements MouseListener{
 			this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
 			Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
 			Board.tempCode = null;
+			this.pieceColor = Board.tempColor;
 			unHighlightAll(Board.tempSpot.currentPossibleMoves);
 			Board.tempSpot.currentPossibleMoves.clear();
 			Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
 			this.toggleEmpty();
+			Board.printBoardArray();
 		}
-
+		// }
 	}
 
 	@Override

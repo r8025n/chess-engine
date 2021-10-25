@@ -12,6 +12,11 @@ public class EmptyPiece extends Piece {
 		return emptyString;
 	}
 
+	String getColor() {
+		String emptyString="";
+		return emptyString;
+	}
+
 	static String possibleMoves(int x, int y) {
 		String emptyMoves = "";
 

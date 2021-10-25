@@ -6,11 +6,11 @@ public class Board {
 	JFrame frame;
 	Spot spots[][] = new Spot[8][8];
 	static Spot tempSpot;
-	static String tempCode;
+	static String tempCode, tempColor;
 	static JLabel tempLabel;
 	static Piece tempPiece;
 	static int temp_x, temp_y;
-	String humanColor = "white", computerColor = "black"; 
+	static String humanColor = "white", computerColor = "black"; 
 
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
@@ -22,6 +22,15 @@ public class Board {
 		{"P", "P", "P", "P", "P", "P", "P", "P"},
 		{"R", "K", "B", "Q", "A", "B", "K", "R"}
 	};
+
+	static void printBoardArray() {
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				System.out.print(boardArray[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
 	
 	Piece[] computerChessPieces = new Piece[] {
 			new Rook(computerColor), new Knight(computerColor), new Bishop(computerColor),
@@ -74,10 +83,11 @@ public class Board {
 		return label;
 	} 
 	
-	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode, int x, int y) {
+	static void setTempValues(Spot spot, Piece piece, JLabel label, String drawCode, String pieceColor, int x, int y) {
 		tempSpot = spot;
 		tempPiece = piece;
 		tempCode = drawCode;
+		tempColor = pieceColor;
 		tempLabel = label;
 		temp_x = x;
 		temp_y = y; 

@@ -19,6 +19,10 @@ public class HumanPawn extends Piece {
 		}
 	}
 
+	String getColor() {
+		return this.pieceColor;
+	}
+
 	static String possibleMoves(int x, int y) {
 		String humanPawnMoves = "";
 		String temp = "";

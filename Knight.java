@@ -19,6 +19,10 @@ public class Knight extends Piece {
 		}
 	}
 
+	String getColor() {
+		return this.pieceColor;
+	}
+
 	static int[] xx = {2, 2, -2, -2, 1, 1, -1, -1};
 	static int[] yy = {1, -1, 1, -1, 2, -2, 2, -2};
 

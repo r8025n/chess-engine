@@ -18,6 +18,10 @@ public class Rook extends Piece {
 		}
 	}
 
+	String getColor() {
+		return this.pieceColor;
+	}
+
 	static String possibleMoves(int x, int y) {
 		String rookMoves = "";
 		String temp = "";
