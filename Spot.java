@@ -77,6 +77,7 @@ public class Spot extends JPanel implements MouseListener{
 
 	void highlightSpots() {
 		String possibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		System.out.println(possibleMoves);
 		int moves = possibleMoves.length() / 5;
 		int k = 0, xx, yy;;
 

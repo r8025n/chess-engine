@@ -9,7 +9,8 @@ public class Board {
 	static String tempCode;
 	static JLabel tempLabel;
 	static Piece tempPiece;
-	static int temp_x, temp_y; 
+	static int temp_x, temp_y;
+	String humanColor = "white", computerColor = "black"; 
 
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
@@ -22,16 +23,16 @@ public class Board {
 		{"R", "K", "B", "Q", "A", "B", "K", "R"}
 	};
 	
-	Piece[] blackChessPieces = new Piece[] {
-			new Rook("black"), new Knight("black"), new Bishop("black"),
-			new Queen("black"), new King("black"), new Bishop("black"),
-			new Knight("black"), new Rook("black")
+	Piece[] computerChessPieces = new Piece[] {
+			new Rook(computerColor), new Knight(computerColor), new Bishop(computerColor),
+			new Queen(computerColor), new King(computerColor), new Bishop(computerColor),
+			new Knight(computerColor), new Rook(computerColor)
 	};
 	
-	Piece[] whiteChessPieces = new Piece[] {
-			new Rook("white"), new Knight("white"), new Bishop("white"),
-			new Queen("white"), new King("white"), new Bishop("white"),
-			new Knight("white"), new Rook("white")
+	Piece[] humanChessPieces = new Piece[] {
+			new Rook(humanColor), new Knight(humanColor), new Bishop(humanColor),
+			new Queen(humanColor), new King(humanColor), new Bishop(humanColor),
+			new Knight(humanColor), new Rook(humanColor)
 	};
 	
 	Board(){
@@ -39,9 +40,9 @@ public class Board {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650, 650);
 		frame.setLayout(new GridLayout(8, 8));
-		setBlackPieces();
+		setComputerPieces();
 		setEmptySpots();
-		setWhitePieces();
+		setHumanPieces();
 		setBackgroundColors();
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -83,29 +84,29 @@ public class Board {
 	}
 
 
-	void setBlackPieces(){
+	void setComputerPieces(){
 		for(int j = 0; j < 8; j++) {
-			spots[0][j] = new Spot(0, j, blackChessPieces[j], this);
+			spots[0][j] = new Spot(0, j, computerChessPieces[j], this);
 			spots[0][j].toggleEmpty();
 			frame.add(spots[0][j]);
 		}
 
 		for(int j = 0; j < 8; j++) {
-			spots[1][j] = new Spot(1, j, new BlackPawn(), this);
+			spots[1][j] = new Spot(1, j, new ComputerPawn(computerColor), this);
 			spots[1][j].toggleEmpty();
 			frame.add(spots[1][j]);
 		}
 	}
 	
-	void setWhitePieces(){	
+	void setHumanPieces(){	
 		for(int j = 0; j < 8; j++) {
-			spots[6][j] = new Spot(6, j, new WhitePawn(), this);
+			spots[6][j] = new Spot(6, j, new HumanPawn(humanColor), this);
 			spots[6][j].toggleEmpty();
 			frame.add(spots[6][j]);
 		}
 
 		for(int j = 0; j < 8; j++) {
-			spots[7][j]=new Spot(7,j,whiteChessPieces[j], this);
+			spots[7][j]=new Spot(7,j,humanChessPieces[j], this);
 			spots[7][j].toggleEmpty();
 			frame.add(spots[7][j]);
 		}
