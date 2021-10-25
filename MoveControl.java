@@ -38,10 +38,10 @@ public class MoveControl {
 			return Knight.possibleMoves(x, y);
 		else if(occupyingPiece instanceof Rook)
 			return Rook.possibleMoves(x, y);
-		else if(occupyingPiece instanceof BlackPawn)
-			return BlackPawn.possibleMoves(x, y);
-		else if(occupyingPiece instanceof WhitePawn)
-			return WhitePawn.possibleMoves(x, y);
+		else if(occupyingPiece instanceof ComputerPawn)
+			return ComputerPawn.possibleMoves(x, y);
+		else if(occupyingPiece instanceof HumanPawn)
+			return HumanPawn.possibleMoves(x, y);
 		else
 			return EmptyPiece.possibleMoves(x, y);
 	}
