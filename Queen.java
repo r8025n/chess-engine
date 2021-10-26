@@ -22,13 +22,13 @@ public class Queen extends Piece {
 		return this.pieceColor;
 	}
 
-	static String possibleMoves(int x, int y) {
+	String possibleMoves(int x, int y) {
 		String queenMoves = "";
 		String temp = "";
 		
 		// horizontal moves
 		for(int i = x + 1; i < 8; i++) {
-			if(Board.boardArray[i][y] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
+			if(Board.boardArray[i][y] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
 				// queenMoves.add(new IntPair(i, y));
 				temp = "" + x + y + i + y + Board.boardArray[i][y];
 				queenMoves += temp;
@@ -39,7 +39,7 @@ public class Queen extends Piece {
 		}
 
 		for(int i = x - 1; i >= 0; i--) {
-			if(Board.boardArray[i][y] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
+			if(Board.boardArray[i][y] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
 				// queenMoves.add(new IntPair(i, y));
 				temp = "" + x + y + i + y + Board.boardArray[i][y];
 				queenMoves += temp;
@@ -50,7 +50,7 @@ public class Queen extends Piece {
 		}
 
 		for(int i = y + 1; i < 8; i++) {
-			if(Board.boardArray[x][i] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+			if(Board.boardArray[x][i] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
 				// queenMoves.add(new IntPair(x, i));
 				temp = "" + x + y + x + i + Board.boardArray[x][i];
 				queenMoves += temp;	
@@ -60,7 +60,7 @@ public class Queen extends Piece {
 		}
 
 		for(int i = y - 1; i >= 0; i--) {
-			if(Board.boardArray[x][i] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+			if(Board.boardArray[x][i] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
 				// queenMoves.add(new IntPair(x, i));
 				temp = "" + x + y + x + i + Board.boardArray[x][i];
 				queenMoves += temp;
@@ -72,7 +72,7 @@ public class Queen extends Piece {
 		// diagonal moves
 
 		for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {
-			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+			if(Board.boardArray[i][j] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
 				// queenMoves.add(new IntPair(i, j));
 				temp = "" + x + y + i + j + Board.boardArray[i][j];
 				queenMoves += temp;
@@ -82,7 +82,7 @@ public class Queen extends Piece {
 		}
 
 		for(int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
-			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+			if(Board.boardArray[i][j] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
 				// queenMoves.add(new IntPair(i, j));
 				temp = "" + x + y + i + j + Board.boardArray[i][j];
 				queenMoves += temp;
@@ -92,7 +92,7 @@ public class Queen extends Piece {
 		}
 
 		for(int i = x + 1, j = y - 1; i < 8 && j >= 0; i++, j--) {
-			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+			if(Board.boardArray[i][j] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
 				// queenMoves.add(new IntPair(i, j));
 				temp = "" + x + y + i + j + Board.boardArray[i][j];
 				queenMoves += temp;
@@ -102,7 +102,7 @@ public class Queen extends Piece {
 		}
 
 		for(int i = x - 1, j = y + 1; i >= 0 && j < 8; i--, j++) {
-			if(Board.boardArray[i][j] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+			if(Board.boardArray[i][j] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
 				// queenMoves.add(new IntPair(i, j));
 				temp = "" + x + y + i + j + Board.boardArray[i][j];
 				queenMoves += temp;

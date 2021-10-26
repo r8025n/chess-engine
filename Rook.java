@@ -22,12 +22,12 @@ public class Rook extends Piece {
 		return this.pieceColor;
 	}
 
-	static String possibleMoves(int x, int y) {
+	String possibleMoves(int x, int y) {
 		String rookMoves = "";
 		String temp = "";
 
 		for(int i = x + 1; i < 8; i++) {
-			if(Board.boardArray[i][y] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
+			if(Board.boardArray[i][y] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
 				// rookMoves.add(new IntPair(i, y));
 				temp = "" + x + y + i + y + Board.boardArray[i][y];
 				rookMoves += temp;
@@ -38,7 +38,7 @@ public class Rook extends Piece {
 		}
 
 		for(int i = x - 1; i >= 0; i--) {
-			if(Board.boardArray[i][y] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
+			if(Board.boardArray[i][y] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
 				// rookMoves.add(new IntPair(i, y));
 				temp = "" + x + y + i + y + Board.boardArray[i][y];
 				rookMoves += temp;
@@ -49,7 +49,7 @@ public class Rook extends Piece {
 		}
 
 		for(int i = y + 1; i < 8; i++) {
-			if(Board.boardArray[x][i] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+			if(Board.boardArray[x][i] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
 				// rookMoves.add(new IntPair(x, i));
 				temp = "" + x + y + x + i + Board.boardArray[x][i];
 				rookMoves += temp;
@@ -59,7 +59,7 @@ public class Rook extends Piece {
 		}
 
 		for(int i = y - 1; i >= 0; i--) {
-			if(Board.boardArray[x][i] == " " && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+			if(Board.boardArray[x][i] == " " || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
 				// rookMoves.add(new IntPair(x, i));
 				temp = "" + x + y + x + i + Board.boardArray[x][i];
 				rookMoves += temp;
