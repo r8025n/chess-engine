@@ -23,11 +23,11 @@ public class ComputerPawn extends Piece {
 		return this.pieceColor;
 	}
 
-	static String possibleMoves(int x, int y) {
+	String possibleMoves(int x, int y) {
 		String computerPawnMoves = "";
 		String temp = "";
 		
-		if(MoveControl.isMoveInBound(x + 1, y) && Board.boardArray[x + 1][y] == " ") {
+		if(isMoveInBound(x + 1, y) && Board.boardArray[x + 1][y] == " ") {
 			// computerPawnMoves.add(new IntPair(x + 1, y));\
 			temp = "" + x + y + (x + 1) + y + Board.boardArray[x + 1][y];
 			//temp = String.format("%s%s%s%s%s",x,y,(x+1),y,Board.boardArray[x+1][y]);
@@ -35,13 +35,13 @@ public class ComputerPawn extends Piece {
 			computerPawnMoves += temp;
 		}
 
-		if(MoveControl.isMoveInBound(x + 1, y - 1) && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1])) {
+		if(isMoveInBound(x + 1, y - 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1])) {
 			// computerPawnMoves.add(new IntPair(x + 1, y - 1));
 			temp = "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
 			computerPawnMoves += temp;
 		}
 
-		if(MoveControl.isMoveInBound(x + 1, y + 1) && MoveControl.isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y + 1])) {
+		if(isMoveInBound(x + 1, y + 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y + 1])) {
 			// computerPawnMoves.add(new IntPair(x + 1, y + 1));
 			temp = "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
 			computerPawnMoves += temp;
