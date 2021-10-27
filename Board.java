@@ -4,7 +4,7 @@ import javax.swing.*;
 public class Board {
 
 	JFrame frame;
-	Spot spots[][] = new Spot[8][8];
+	static Spot spots[][] = new Spot[8][8];
 	static Spot tempSpot;
 	static String tempCode, tempColor;
 	static JLabel tempLabel;
@@ -33,15 +33,15 @@ public class Board {
 	}
 	
 	Piece[] computerChessPieces = new Piece[] {
-			new Rook(computerColor), new Knight(computerColor), new Bishop(computerColor),
-			new Queen(computerColor), new King(computerColor), new Bishop(computerColor),
-			new Knight(computerColor), new Rook(computerColor)
+			new Rook(computerColor, "r"), new Knight(computerColor, "k"), new Bishop(computerColor, "b"),
+			new Queen(computerColor, "q"), new King(computerColor, "a"), new Bishop(computerColor, "b"),
+			new Knight(computerColor, "k"), new Rook(computerColor, "r")
 	};
 	
 	Piece[] humanChessPieces = new Piece[] {
-			new Rook(humanColor), new Knight(humanColor), new Bishop(humanColor),
-			new Queen(humanColor), new King(humanColor), new Bishop(humanColor),
-			new Knight(humanColor), new Rook(humanColor)
+			new Rook(humanColor, "R"), new Knight(humanColor, "K"), new Bishop(humanColor, "B"),
+			new Queen(humanColor, "Q"), new King(humanColor, "A"), new Bishop(humanColor, "B"),
+			new Knight(humanColor, "K"), new Rook(humanColor, "R")
 	};
 	
 	Board(){
@@ -102,7 +102,7 @@ public class Board {
 		}
 
 		for(int j = 0; j < 8; j++) {
-			spots[1][j] = new Spot(1, j, new ComputerPawn(computerColor), this);
+			spots[1][j] = new Spot(1, j, new ComputerPawn(computerColor, "p"), this);
 			spots[1][j].toggleEmpty();
 			frame.add(spots[1][j]);
 		}
@@ -110,7 +110,7 @@ public class Board {
 	
 	void setHumanPieces(){	
 		for(int j = 0; j < 8; j++) {
-			spots[6][j] = new Spot(6, j, new HumanPawn(humanColor), this);
+			spots[6][j] = new Spot(6, j, new HumanPawn(humanColor, "P"), this);
 			spots[6][j].toggleEmpty();
 			frame.add(spots[6][j]);
 		}

@@ -4,9 +4,11 @@ public class Rook extends Piece {
 	private String whiteCode="\u2656";
 	private String blackCode="\u265C";
 	private String pieceColor;
+	private String name;
 
-	Rook(String c){
+	Rook(String c, String name){
 		this.pieceColor=c;
+		this.name = name;
 	}
 	
 	String getCode() {
@@ -20,6 +22,10 @@ public class Rook extends Piece {
 
 	String getColor() {
 		return this.pieceColor;
+	}
+
+	String getName() {
+		return name;
 	}
 
 	String possibleMoves(int x, int y) {

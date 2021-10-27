@@ -61,6 +61,12 @@ public class Spot extends JPanel implements MouseListener{
 
 	// 	return false;
 	// }
+	int getXX(){
+		return this.x;
+	}
+	int getYY(){
+		return this.y;
+	}
 
 	void unHighlightAll(ArrayList<IntPair> currentPossibleMoves) {
 		int xx, yy;
@@ -77,7 +83,8 @@ public class Spot extends JPanel implements MouseListener{
 	}
 
 	void highlightSpots() {
-		String possibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		//String possibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
+		String possibleMoves = occupyingPiece.possibleMoves(x, y);
 		System.out.println(possibleMoves);
 		int moves = possibleMoves.length() / 5;
 		int k = 0, xx, yy;;
@@ -108,6 +115,7 @@ public class Spot extends JPanel implements MouseListener{
 		if(! isHighlighted() && Board.tempCode == null && ! isEmpty() && Board.humanColor.equals(this.pieceColor)){
 			System.out.println("x= " + x + "  y=" + y);
 			this.highlightSpots();
+			//System.out.println("Piece Name = " + this.occupyingPiece.getName());
 
 			if(currentPossibleMoves.size() != 0) {
 				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode, this.pieceColor, this.x, this.y);
@@ -125,7 +133,16 @@ public class Spot extends JPanel implements MouseListener{
 			Board.tempSpot.currentPossibleMoves.clear();
 			Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
 			this.toggleEmpty();
+			//System.out.println(ChessEngine.calculateComputerMoves());
+			System.out.println("Piece Name = " + this.occupyingPiece.getName());
+			if(this.occupyingPiece.getName().equals("a"))
+				King.updateComputerKingPosition(this.x, this.y);
+			else if(this.occupyingPiece.getName().equals("A"))
+				King.updateHumanKingPosition(this.x, this.y);
+
+			ChessEngine.makeMove();
 			Board.printBoardArray();
+			// System.out.println("king_X_Human= " + King.king_X_Human + "king_Y_Human= " + King.king_Y_Human);
 		}
 		// }
 	}

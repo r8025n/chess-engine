@@ -17,6 +17,11 @@ public class EmptyPiece extends Piece {
 		return emptyString;
 	}
 
+	String getName() {
+		String emptyString="";
+		return emptyString;
+	}
+
 	String possibleMoves(int x, int y) {
 		String emptyMoves = "";
 

@@ -5,10 +5,11 @@ public class Bishop extends Piece {
 	private String whiteCode = "\u2657";
 	private String blackCode = "\u265D";
 	private String pieceColor;
+	private String name;
 	
-	Bishop(String c) {
-
+	Bishop(String c, String name) {
 		this.pieceColor = c;
+		this.name = name;
 	}
 	
 	String getCode() {
@@ -23,6 +24,10 @@ public class Bishop extends Piece {
 
 	String getColor() {
 		return this.pieceColor;
+	}
+
+	String getName() {
+		return name;
 	}
 
 	String possibleMoves(int x, int y) {
