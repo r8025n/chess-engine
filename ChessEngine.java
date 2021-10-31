@@ -19,23 +19,35 @@ public class ChessEngine {
 	static String alphaBeta() {
 		String s = calculateComputerMoves();
 		int i;
+		int limit = s.length()/5;
 		Random random = new Random();
-		i = random.nextInt(s.length()/5);
+		i = random.nextInt(limit);
+		// i = limit - 1;
 		System.out.println("random number = " + i);
-		int si = i*5, ei = si + 6;
+		int si = i*5, ei = si + 5;
 		String answer = s.substring(si, ei);
 		System.out.println("random move = " + answer);
 
 		return answer;
 	}
 
-	static void makeMove() {
+	// static string alphabeta(int depth, int alpha, int beta) {
+	// 	String str = calculateComputerMoves();
+
+	// 	if(depth == 0 || str.size() == 0)
+	// 		return
+
+		
+	// }
+
+	static void makeComputerMove() {
 		String move  = alphaBeta();
 		System.out.println(move);
 		int sourceX = move.charAt(0) - '0';
 		int sourceY = move.charAt(1) - '0';
 		int targetX = move.charAt(2) - '0';
 		int targetY = move.charAt(3) - '0';
+		char capturedPiece = move.charAt(4);
 		Spot sourceSpot = Board.spots[sourceX][sourceY];
 		Spot targetSpot = Board.spots[targetX][targetY];
 		Piece tempPiece = sourceSpot.occupyingPiece;
@@ -43,6 +55,10 @@ public class ChessEngine {
 		targetSpot.occupyingPiece = tempPiece;
 		targetSpot.drawCode = tempCode;
 		targetSpot.pieceColor = Board.computerColor;
+		sourceSpot.toggleEmpty();
+		targetSpot.toggleEmpty();
+		if(capturedPiece != ' ')
+			targetSpot.toggleEmpty();
 
 		Board.removePieceLabel(sourceSpot, sourceSpot.pieceLabel);
 		Board.removePieceLabel(targetSpot, targetSpot.pieceLabel);

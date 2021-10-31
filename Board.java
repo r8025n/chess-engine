@@ -17,9 +17,9 @@ public class Board {
 		{"p", "p", "p", "p", "p", "p", "p", "p"},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{" ", " ", " ", " ", "P", " ", " ", " "},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
-		{" ", " ", " ", " ", " ", " ", " ", " "},
-		{"P", "P", "P", "P", "P", "P", "P", "P"},
+		{"P", "P", "P", "P", " ", "P", "P", "P"},
 		{"R", "K", "B", "Q", "A", "B", "K", "R"}
 	};
 
@@ -32,26 +32,27 @@ public class Board {
 		}
 	}
 	
-	Piece[] computerChessPieces = new Piece[] {
-			new Rook(computerColor, "r"), new Knight(computerColor, "k"), new Bishop(computerColor, "b"),
-			new Queen(computerColor, "q"), new King(computerColor, "a"), new Bishop(computerColor, "b"),
-			new Knight(computerColor, "k"), new Rook(computerColor, "r")
-	};
+	// Piece[] computerChessPieces = new Piece[] {
+	// 		new Rook(computerColor, "r"), new Knight(computerColor, "k"), new Bishop(computerColor, "b"),
+	// 		new Queen(computerColor, "q"), new King(computerColor, "a"), new Bishop(computerColor, "b"),
+	// 		new Knight(computerColor, "k"), new Rook(computerColor, "r")
+	// };
 	
-	Piece[] humanChessPieces = new Piece[] {
-			new Rook(humanColor, "R"), new Knight(humanColor, "K"), new Bishop(humanColor, "B"),
-			new Queen(humanColor, "Q"), new King(humanColor, "A"), new Bishop(humanColor, "B"),
-			new Knight(humanColor, "K"), new Rook(humanColor, "R")
-	};
+	// Piece[] humanChessPieces = new Piece[] {
+	// 		new Rook(humanColor, "R"), new Knight(humanColor, "K"), new Bishop(humanColor, "B"),
+	// 		new Queen(humanColor, "Q"), new King(humanColor, "A"), new Bishop(humanColor, "B"),
+	// 		new Knight(humanColor, "K"), new Rook(humanColor, "R")
+	// };
 	
 	Board(){
 		frame= new JFrame("Chess Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650, 650);
 		frame.setLayout(new GridLayout(8, 8));
-		setComputerPieces();
-		setEmptySpots();
-		setHumanPieces();
+		// setComputerPieces();
+		// setEmptySpots();
+		// setHumanPieces();
+		setChessPieces();
 		setBackgroundColors();
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -94,42 +95,42 @@ public class Board {
 	}
 
 
-	void setComputerPieces(){
-		for(int j = 0; j < 8; j++) {
-			spots[0][j] = new Spot(0, j, computerChessPieces[j], this);
-			spots[0][j].toggleEmpty();
-			frame.add(spots[0][j]);
-		}
+	// void setComputerPieces(){
+	// 	for(int j = 0; j < 8; j++) {
+	// 		spots[0][j] = new Spot(0, j, computerChessPieces[j], this);
+	// 		spots[0][j].toggleEmpty();
+	// 		frame.add(spots[0][j]);
+	// 	}
 
-		for(int j = 0; j < 8; j++) {
-			spots[1][j] = new Spot(1, j, new ComputerPawn(computerColor, "p"), this);
-			spots[1][j].toggleEmpty();
-			frame.add(spots[1][j]);
-		}
-	}
+	// 	for(int j = 0; j < 8; j++) {
+	// 		spots[1][j] = new Spot(1, j, new ComputerPawn(computerColor, "p"), this);
+	// 		spots[1][j].toggleEmpty();
+	// 		frame.add(spots[1][j]);
+	// 	}
+	// }
 	
-	void setHumanPieces(){	
-		for(int j = 0; j < 8; j++) {
-			spots[6][j] = new Spot(6, j, new HumanPawn(humanColor, "P"), this);
-			spots[6][j].toggleEmpty();
-			frame.add(spots[6][j]);
-		}
+	// void setHumanPieces(){	
+	// 	for(int j = 0; j < 8; j++) {
+	// 		spots[6][j] = new Spot(6, j, new HumanPawn(humanColor, "P"), this);
+	// 		spots[6][j].toggleEmpty();
+	// 		frame.add(spots[6][j]);
+	// 	}
 
-		for(int j = 0; j < 8; j++) {
-			spots[7][j]=new Spot(7,j,humanChessPieces[j], this);
-			spots[7][j].toggleEmpty();
-			frame.add(spots[7][j]);
-		}
-	}
+	// 	for(int j = 0; j < 8; j++) {
+	// 		spots[7][j]=new Spot(7,j,humanChessPieces[j], this);
+	// 		spots[7][j].toggleEmpty();
+	// 		frame.add(spots[7][j]);
+	// 	}
+	// }
 	
-	void setEmptySpots() {
-		for(int i = 2; i < 6; i++) {
-			for(int j = 0; j < 8; j++){
-				spots[i][j] = new Spot(i, j, new EmptyPiece(), this);
-				frame.add(spots[i][j]);
-			}
-		}
-	}
+	// void setEmptySpots() {
+	// 	for(int i = 2; i < 6; i++) {
+	// 		for(int j = 0; j < 8; j++){
+	// 			spots[i][j] = new Spot(i, j, new EmptyPiece(), this);
+	// 			frame.add(spots[i][j]);
+	// 		}
+	// 	}
+	// }
 	
 	void setBackgroundColors() {
 		for(int i = 0; i < 8; i++) {
@@ -146,6 +147,18 @@ public class Board {
 					else
 						spots[i][j].setBackground(Color.white);
 				}
+			}
+		}
+	}
+
+	void setChessPieces() {
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				String pieceChar = boardArray[i][j];
+				spots[i][j] = new Spot(i, j, Piece.pieceSelector(pieceChar));
+				frame.add(spots[i][j]);
+				if(pieceChar != " ")
+					spots[i][j].toggleEmpty();
 			}
 		}
 	}

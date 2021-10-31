@@ -7,20 +7,23 @@ import javax.swing.BorderFactory;
 
 public class Spot extends JPanel implements MouseListener{
 	private int x, y;
-	private boolean empty = true, highlighted = false;
+	private boolean empty = true;
+	private boolean highlighted = false;
 	Piece occupyingPiece;
 	Border redBorder = BorderFactory.createLineBorder(Color.red);
 	Border emptyBorder = BorderFactory.createEmptyBorder();
-	Board board;
+	// Board board;
 	String drawCode, pieceColor;
 	JLabel pieceLabel;
 	ArrayList<IntPair> currentPossibleMoves = new ArrayList<>();
 
-	Spot(int x,int y,Piece piece,Board board) {
+	Spot(int x,int y,Piece piece/*,Board board*/) {
 		this.x = x;
 		this.y = y;
-		this.board = board.get();
+		// this.board = board.get();
 		occupyingPiece = piece;
+		// if(!(occupyingPiece instanceof EmptyPiece))
+		// 	toggleEmpty();
 		drawCode = piece.getCode();
 		pieceColor = piece.getColor();
 		this.pieceLabel = Board.drawPieceLabel(this, drawCode);
@@ -76,8 +79,8 @@ public class Spot extends JPanel implements MouseListener{
 			xx = pair.x_val;
 			yy = pair.y_val;
 
-			board.spots[xx][yy].toggleHighlighted();
-			board.spots[xx][yy].setBorder(emptyBorder);
+			Board.spots[xx][yy].toggleHighlighted();
+			Board.spots[xx][yy].setBorder(emptyBorder);
 			
 		}
 	}
@@ -102,15 +105,15 @@ public class Spot extends JPanel implements MouseListener{
 				IntPair pair = currentPossibleMoves.get(i);
 				xx = pair.x_val;
 				yy = pair.y_val;
-				board.spots[xx][yy].toggleHighlighted();
-				board.spots[xx][yy].setBorder(redBorder);
+				Board.spots[xx][yy].toggleHighlighted();
+				Board.spots[xx][yy].setBorder(redBorder);
 			}
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		System.out.println(this.isEmpty());
 		// if(Board.humanColor.equals(this.pieceColor)){
 		if(! isHighlighted() && Board.tempCode == null && ! isEmpty() && Board.humanColor.equals(this.pieceColor)){
 			System.out.println("x= " + x + "  y=" + y);
@@ -131,6 +134,8 @@ public class Spot extends JPanel implements MouseListener{
 			this.pieceColor = Board.tempColor;
 			unHighlightAll(Board.tempSpot.currentPossibleMoves);
 			Board.tempSpot.currentPossibleMoves.clear();
+			if(!(Board.boardArray[this.x][this.y].equals(" ")))
+				toggleEmpty();
 			Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
 			this.toggleEmpty();
 			//System.out.println(ChessEngine.calculateComputerMoves());
@@ -140,7 +145,7 @@ public class Spot extends JPanel implements MouseListener{
 			else if(this.occupyingPiece.getName().equals("A"))
 				King.updateHumanKingPosition(this.x, this.y);
 
-			ChessEngine.makeMove();
+			ChessEngine.makeComputerMove();
 			Board.printBoardArray();
 			// System.out.println("king_X_Human= " + King.king_X_Human + "king_Y_Human= " + King.king_Y_Human);
 		}
