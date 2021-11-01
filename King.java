@@ -7,8 +7,8 @@ public class King extends Piece{
 	private String pieceColor;
 	private String name;
 
-	static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
-	static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
+	// static int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
+	// static int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
 
 	static int king_X_Comp = 0, king_Y_Comp = 4;
 	static int king_X_Human = 7, king_Y_Human = 4;
@@ -24,20 +24,20 @@ public class King extends Piece{
 	}
 
 
-	String possibleMoves(int x, int y) {
-		String kingMoves = "";
-		String temp = "";
+	// String possibleMoves(int x, int y) {
+	// 	String kingMoves = "";
+	// 	String temp = "";
 		
-		for(int i = 0; i < 8; i++){
-			if(isMoveLegal(x, y, xx[i], yy[i])) {
-				// kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
-				temp = "" + x + y + (x + xx[i]) + (y + yy[i]) + Board.boardArray[x + xx[i]][y + yy[i]];
-				kingMoves += temp;
-			}
-		}
+	// 	for(int i = 0; i < 8; i++){
+	// 		if(isMoveLegal(x, y, xx[i], yy[i])) {
+	// 			// kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
+	// 			temp = "" + x + y + (x + xx[i]) + (y + yy[i]) + Board.boardArray[x + xx[i]][y + yy[i]];
+	// 			kingMoves += temp;
+	// 		}
+	// 	}
 
-		return kingMoves;
-	}
+	// 	return kingMoves;
+	// }
 	
 	King(String color, String name) {
 

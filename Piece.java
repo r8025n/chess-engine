@@ -12,7 +12,7 @@ public abstract class Piece extends MoveValidation{
 
 	abstract String getName();
 
-	abstract String possibleMoves(int x, int y);
+	// abstract String possibleMoves(int x, int y);
 
 	// String getCode() {
 		

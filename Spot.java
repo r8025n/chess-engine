@@ -87,9 +87,11 @@ public class Spot extends JPanel implements MouseListener{
 
 	void highlightSpots() {
 		//String possibleMoves = MoveControl.returnPossibleMoves(occupyingPiece, this.x, this.y);
-		String possibleMoves = occupyingPiece.possibleMoves(x, y);
-		System.out.println(possibleMoves);
+		// String possibleMoves = occupyingPiece.possibleMoves(x, y);
+		String possibleMoves = MoveGeneration.returnPossibleMoves(x, y);
+		// System.out.println(possibleMoves);
 		int moves = possibleMoves.length() / 5;
+		System.out.println("moves to be highlighted = " + moves);
 		int k = 0, xx, yy;;
 
 		for(int i = 0; i < moves; i++) {
@@ -125,7 +127,7 @@ public class Spot extends JPanel implements MouseListener{
 				this.toggleEmpty();
 			}
 		}
-		else if(Board.tempCode != null && isHighlighted()){
+		else if(Board.tempCode != null && isHighlighted()) {
 			Board.removePieceLabel(this, this.pieceLabel);
 			setValues(Board.tempPiece, Board.tempCode);
 			this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
@@ -134,19 +136,20 @@ public class Spot extends JPanel implements MouseListener{
 			this.pieceColor = Board.tempColor;
 			unHighlightAll(Board.tempSpot.currentPossibleMoves);
 			Board.tempSpot.currentPossibleMoves.clear();
+			
 			if(!(Board.boardArray[this.x][this.y].equals(" ")))
 				toggleEmpty();
 			Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
 			this.toggleEmpty();
 			//System.out.println(ChessEngine.calculateComputerMoves());
-			System.out.println("Piece Name = " + this.occupyingPiece.getName());
+			// System.out.println("Piece Name = " + this.occupyingPiece.getName());
 			if(this.occupyingPiece.getName().equals("a"))
 				King.updateComputerKingPosition(this.x, this.y);
 			else if(this.occupyingPiece.getName().equals("A"))
 				King.updateHumanKingPosition(this.x, this.y);
 
 			ChessEngine.makeComputerMove();
-			Board.printBoardArray();
+			// Board.printBoardArray();
 			// System.out.println("king_X_Human= " + King.king_X_Human + "king_Y_Human= " + King.king_Y_Human);
 		}
 		// }

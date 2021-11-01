@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 
 public class Board {
 
@@ -17,18 +18,19 @@ public class Board {
 		{"p", "p", "p", "p", "p", "p", "p", "p"},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
-		{" ", " ", " ", " ", "P", " ", " ", " "},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
-		{"P", "P", "P", "P", " ", "P", "P", "P"},
+		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{"P", "P", "P", "P", "P", "P", "P", "P"},
 		{"R", "K", "B", "Q", "A", "B", "K", "R"}
 	};
 
 	static void printBoardArray() {
 		for(int i = 0; i < 8; i++){
-			for(int j = 0; j < 8; j++) {
-				System.out.print(boardArray[i][j] + " ");
-			}
-			System.out.println();
+			// for(int j = 0; j < 8; j++) {
+			// 	System.out.print(boardArray[i][j] + " ");
+			// }
+			// System.out.println();
+			System.out.println(Arrays.toString(boardArray[i]));
 		}
 	}
 	

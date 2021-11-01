@@ -28,136 +28,136 @@ public class Queen extends Piece {
 		return name;
 	}
 
-	String possibleMoves(int x, int y) {
-		String queenMoves = "";
-		String temp = "";
+	// String possibleMoves(int x, int y) {
+	// 	String queenMoves = "";
+	// 	String temp = "";
 		
-		// horizontal moves
-		for(int i = x + 1; i < 8; i++) {
-			if(Board.boardArray[i][y] == " ") {
-				// queenMoves.add(new IntPair(i, y));
-				temp = "" + x + y + i + y + Board.boardArray[i][y];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
-				temp = "" + x + y + i + y + Board.boardArray[i][y];
-				queenMoves += temp;
-				break;
-			}
-			else
-				break;
+	// 	// horizontal moves
+	// 	for(int i = x + 1; i < 8; i++) {
+	// 		if(Board.boardArray[i][y] == " ") {
+	// 			// queenMoves.add(new IntPair(i, y));
+	// 			temp = "" + x + y + i + y + Board.boardArray[i][y];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
+	// 			temp = "" + x + y + i + y + Board.boardArray[i][y];
+	// 			queenMoves += temp;
+	// 			break;
+	// 		}
+	// 		else
+	// 			break;
 
-		}
+	// 	}
 
-		for(int i = x - 1; i >= 0; i--) {
-			if(Board.boardArray[i][y] == " ") {
-				// queenMoves.add(new IntPair(i, y));
-				temp = "" + x + y + i + y + Board.boardArray[i][y];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])){
-				temp = "" + x + y + i + y + Board.boardArray[i][y];
-				queenMoves += temp;
-				break;
-			}
-			else
-				break;
+	// 	for(int i = x - 1; i >= 0; i--) {
+	// 		if(Board.boardArray[i][y] == " ") {
+	// 			// queenMoves.add(new IntPair(i, y));
+	// 			temp = "" + x + y + i + y + Board.boardArray[i][y];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])){
+	// 			temp = "" + x + y + i + y + Board.boardArray[i][y];
+	// 			queenMoves += temp;
+	// 			break;
+	// 		}
+	// 		else
+	// 			break;
 
-		}
+	// 	}
 
-		for(int i = y + 1; i < 8; i++) {
-			if(Board.boardArray[x][i] == " ") {
-				// queenMoves.add(new IntPair(x, i));
-				temp = "" + x + y + x + i + Board.boardArray[x][i];
-				queenMoves += temp;	
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
-				temp = "" + x + y + x + i + Board.boardArray[x][i];
-				queenMoves += temp;
-				break;	
-			}
-			else
-				break;
-		}
+	// 	for(int i = y + 1; i < 8; i++) {
+	// 		if(Board.boardArray[x][i] == " ") {
+	// 			// queenMoves.add(new IntPair(x, i));
+	// 			temp = "" + x + y + x + i + Board.boardArray[x][i];
+	// 			queenMoves += temp;	
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+	// 			temp = "" + x + y + x + i + Board.boardArray[x][i];
+	// 			queenMoves += temp;
+	// 			break;	
+	// 		}
+	// 		else
+	// 			break;
+	// 	}
 
-		for(int i = y - 1; i >= 0; i--) {
-			if(Board.boardArray[x][i] == " ") {
-				// queenMoves.add(new IntPair(x, i));
-				temp = "" + x + y + x + i + Board.boardArray[x][i];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
-				temp = "" + x + y + x + i + Board.boardArray[x][i];
-				queenMoves += temp;
-				break;	
-			}
-			else
-				break;
-		}
+	// 	for(int i = y - 1; i >= 0; i--) {
+	// 		if(Board.boardArray[x][i] == " ") {
+	// 			// queenMoves.add(new IntPair(x, i));
+	// 			temp = "" + x + y + x + i + Board.boardArray[x][i];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+	// 			temp = "" + x + y + x + i + Board.boardArray[x][i];
+	// 			queenMoves += temp;
+	// 			break;	
+	// 		}
+	// 		else
+	// 			break;
+	// 	}
 
-		// diagonal moves
+	// 	// diagonal moves
 
-		for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {
-			if(Board.boardArray[i][j] == " ") {
-				// queenMoves.add(new IntPair(i, j));
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-				break;
-			}
-			else
-				break;
-		}
+	// 	for(int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {
+	// 		if(Board.boardArray[i][j] == " ") {
+	// 			// queenMoves.add(new IntPair(i, j));
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 			break;
+	// 		}
+	// 		else
+	// 			break;
+	// 	}
 
-		for(int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
-			if(Board.boardArray[i][j] == " ") {
-				// queenMoves.add(new IntPair(i, j));
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-				break;
-			}
-			else
-				break;
-		}
+	// 	for(int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
+	// 		if(Board.boardArray[i][j] == " ") {
+	// 			// queenMoves.add(new IntPair(i, j));
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 			break;
+	// 		}
+	// 		else
+	// 			break;
+	// 	}
 
-		for(int i = x + 1, j = y - 1; i < 8 && j >= 0; i++, j--) {
-			if(Board.boardArray[i][j] == " ") {
-				// queenMoves.add(new IntPair(i, j));
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-				break;
-			}
-			else
-				break;
-		}
+	// 	for(int i = x + 1, j = y - 1; i < 8 && j >= 0; i++, j--) {
+	// 		if(Board.boardArray[i][j] == " ") {
+	// 			// queenMoves.add(new IntPair(i, j));
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 			break;
+	// 		}
+	// 		else
+	// 			break;
+	// 	}
 
-		for(int i = x - 1, j = y + 1; i >= 0 && j < 8; i--, j++) {
-			if(Board.boardArray[i][j] == " ") {
-				// queenMoves.add(new IntPair(i, j));
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-			}
-			else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
-				temp = "" + x + y + i + j + Board.boardArray[i][j];
-				queenMoves += temp;
-				break;
-			}
-			else
-				break;
-		}
+	// 	for(int i = x - 1, j = y + 1; i >= 0 && j < 8; i--, j++) {
+	// 		if(Board.boardArray[i][j] == " ") {
+	// 			// queenMoves.add(new IntPair(i, j));
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 		}
+	// 		else if(isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][j])) {
+	// 			temp = "" + x + y + i + j + Board.boardArray[i][j];
+	// 			queenMoves += temp;
+	// 			break;
+	// 		}
+	// 		else
+	// 			break;
+	// 	}
 
-		return queenMoves;
-	}
+	// 	return queenMoves;
+	// }
 
 }

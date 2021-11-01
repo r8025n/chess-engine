@@ -29,31 +29,31 @@ public class ComputerPawn extends Piece {
 		return name;
 	}
 
-	String possibleMoves(int x, int y) {
-		String computerPawnMoves = "";
-		String temp = "";
+	// String possibleMoves(int x, int y) {
+	// 	String computerPawnMoves = "";
+	// 	String temp = "";
 		
-		if(isMoveInBound(x + 1, y) && Board.boardArray[x + 1][y] == " ") {
-			// computerPawnMoves.add(new IntPair(x + 1, y));\
-			temp = "" + x + y + (x + 1) + y + Board.boardArray[x + 1][y];
-			//temp = String.format("%s%s%s%s%s",x,y,(x+1),y,Board.boardArray[x+1][y]);
-			System.out.println("bp move= " + temp);
-			computerPawnMoves += temp;
-		}
+	// 	if(isMoveInBound(x + 1, y) && Board.boardArray[x + 1][y] == " ") {
+	// 		// computerPawnMoves.add(new IntPair(x + 1, y));\
+	// 		temp = "" + x + y + (x + 1) + y + Board.boardArray[x + 1][y];
+	// 		//temp = String.format("%s%s%s%s%s",x,y,(x+1),y,Board.boardArray[x+1][y]);
+	// 		// System.out.println("bp move= " + temp);
+	// 		computerPawnMoves += temp;
+	// 	}
 
-		if(isMoveInBound(x + 1, y - 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1])) {
-			// computerPawnMoves.add(new IntPair(x + 1, y - 1));
-			temp = "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
-			computerPawnMoves += temp;
-		}
+	// 	if(isMoveInBound(x + 1, y - 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1])) {
+	// 		// computerPawnMoves.add(new IntPair(x + 1, y - 1));
+	// 		temp = "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
+	// 		computerPawnMoves += temp;
+	// 	}
 
-		if(isMoveInBound(x + 1, y + 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y + 1])) {
-			// computerPawnMoves.add(new IntPair(x + 1, y + 1));
-			temp = "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
-			computerPawnMoves += temp;
-		}
+	// 	if(isMoveInBound(x + 1, y + 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y + 1])) {
+	// 		// computerPawnMoves.add(new IntPair(x + 1, y + 1));
+	// 		temp = "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
+	// 		computerPawnMoves += temp;
+	// 	}
 		
-		return computerPawnMoves;
-	}
+	// 	return computerPawnMoves;
+	// }
 
 }
