@@ -152,7 +152,6 @@ public class Spot extends JPanel implements MouseListener{
 			new Thread(new Runnable() {
 			     @Override
 			     public void run() {
-			        // code goes here.
 			     	ChessEngine.makeComputerMove();
 			     }
 			}).start();
