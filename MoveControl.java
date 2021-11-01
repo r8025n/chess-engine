@@ -27,26 +27,26 @@ public class MoveControl {
 	// }
 
 
-	static String returnPossibleMoves(Piece occupyingPiece, int x, int y) {
-		// if(occupyingPiece instanceof King)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else if(occupyingPiece instanceof Queen)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else if(occupyingPiece instanceof Bishop)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else if(occupyingPiece instanceof Knight)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else if(occupyingPiece instanceof Rook)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else if(occupyingPiece instanceof ComputerPawn)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else if(occupyingPiece instanceof HumanPawn)
-		// 	return occupyingPiece.possibleMoves(x, y);
-		// else
-		// 	return EmptyPiece.possibleMoves(x, y);
+	// static String returnPossibleMoves(Piece occupyingPiece, int x, int y) {
+	// 	// if(occupyingPiece instanceof King)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else if(occupyingPiece instanceof Queen)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else if(occupyingPiece instanceof Bishop)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else if(occupyingPiece instanceof Knight)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else if(occupyingPiece instanceof Rook)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else if(occupyingPiece instanceof ComputerPawn)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else if(occupyingPiece instanceof HumanPawn)
+	// 	// 	return occupyingPiece.possibleMoves(x, y);
+	// 	// else
+	// 	// 	return EmptyPiece.possibleMoves(x, y);
 
-		return occupyingPiece.possibleMoves(x, y);
-	}
+	// 	return occupyingPiece.possibleMoves(x, y);
+	// }
 
 	// boolean isOppositeColor(String s1, String s2) {
 	// 	char c1 = s1.charAt(0);

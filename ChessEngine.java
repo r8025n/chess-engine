@@ -59,8 +59,6 @@ public class ChessEngine {
 			Board.boardArray[r][c] = flipCase(Board.boardArray[7-r][7-c]);
 			Board.boardArray[7-r][7-c] = flipCase(temp);
 		}
-		// System.out.println("After flip: ");
-		//Board.printBoardArray();
 	}
 
 	static String flipCase(String str){

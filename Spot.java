@@ -148,9 +148,14 @@ public class Spot extends JPanel implements MouseListener{
 			else if(this.occupyingPiece.getName().equals("A"))
 				King.updateHumanKingPosition(this.x, this.y);
 
-			ChessEngine.makeComputerMove();
-			// Board.printBoardArray();
-			// System.out.println("king_X_Human= " + King.king_X_Human + "king_Y_Human= " + King.king_Y_Human);
+			// ChessEngine.makeComputerMove();
+			new Thread(new Runnable() {
+			     @Override
+			     public void run() {
+			        // code goes here.
+			     	ChessEngine.makeComputerMove();
+			     }
+			}).start();
 		}
 		// }
 	}
