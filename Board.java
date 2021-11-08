@@ -11,7 +11,9 @@ public class Board {
 	static JLabel tempLabel;
 	static Piece tempPiece;
 	static int temp_x, temp_y;
-	static String humanColor = "white", computerColor = "black"; 
+	static String humanColor = "", computerColor = "";
+	static int selectedOption;
+	static String[] option = {"black","white"};
 
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
@@ -33,6 +35,17 @@ public class Board {
 			System.out.println(Arrays.toString(boardArray[i]));
 		}
 	}
+
+	static void setColor() {
+    	if(selectedOption == 0){
+    		humanColor = option[0];
+    		computerColor = option[1];
+    	}
+    	else{
+    		humanColor = option[1];
+    		computerColor = option[0];	
+    	}
+    }
 	
 	// Piece[] computerChessPieces = new Piece[] {
 	// 		new Rook(computerColor, "r"), new Knight(computerColor, "k"), new Bishop(computerColor, "b"),
@@ -56,6 +69,9 @@ public class Board {
 		// setHumanPieces();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+		selectedOption = JOptionPane.showOptionDialog(null, "Which color you want to play with?", "ABC Options", 
+    		JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[1]);
+		setColor();
 		setChessPieces();
 		setBackgroundColors();
 		frame.setVisible(true);

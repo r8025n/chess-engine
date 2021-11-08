@@ -26,7 +26,7 @@ public class StartWindow {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		newFrame.setLocation(dim.width/2-newFrame.getSize().width/2, dim.height/2-newFrame.getSize().height/2);
 
-        newFrame.getContentPane().setBackground(Color.black);
+        newFrame.getContentPane().setBackground(Color.LIGHT_GRAY);
         
         JLabel newLabel=new JLabel();
         newLabel.setText("AUTONOMUS CHESS ENGINE");
@@ -44,7 +44,7 @@ public class StartWindow {
         font1=new Font("ARIAL",Font.ITALIC,35);
         startButton.setFont(font1);
         exitButton.setFont(font1);
-        startButton.setBackground(Color.LIGHT_GRAY);
+        startButton.setBackground(Color.red);
         startButton.setForeground(Color.black);
         exitButton.setBackground(Color.LIGHT_GRAY);
         exitButton.setForeground(Color.black);
