@@ -13,6 +13,9 @@ public class King extends Piece{
 	static int king_X_Comp = 0, king_Y_Comp = 4;
 	static int king_X_Human = 7, king_Y_Human = 4;
 
+	// static int kingComputer = 4;
+	// static int kingHuman = 60;
+
 	static void updateComputerKingPosition(int x, int y) {
 		king_X_Comp = x;
 		king_Y_Comp = y;
@@ -62,4 +65,12 @@ public class King extends Piece{
 	String getColor() {
 		return this.pieceColor;
 	}
+
+	// static boolean isKingSafe(int pos) {
+	// 	int x = pos / 8;
+	// 	int y = pos % 8;
+
+	// 	for(int i = 0)
+
+	// }
 }
