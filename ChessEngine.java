@@ -20,7 +20,7 @@ public class ChessEngine {
 		return allComputerMoves;
 	}
 
-	// static String alphaBeta() {
+	// static String alphaBetaPruning() {
 	// 	String s = calculateComputerMoves();
 	// 	int i;
 	// 	int limit = s.length()/5;
@@ -73,7 +73,7 @@ public class ChessEngine {
 		return ret;
 	}
 
-	static String alphaBeta(int depth, int alpha, int beta, String move, int player) {
+	static String alphaBetaPruning(int depth, int alpha, int beta, String move, int player) {
 		String moves = calculateComputerMoves();
 
 		if(depth == 0 || moves.length() == 0)
@@ -83,7 +83,7 @@ public class ChessEngine {
 		for(int i = 0; i < moves.length(); i+=5) {
 			String temp = makeMove(moves.substring(i, i + 5));
 			flipBoard();
-			String returnString = alphaBeta(depth - 1, alpha, beta, moves.substring(i, i + 5), player);
+			String returnString = alphaBetaPruning(depth - 1, alpha, beta, moves.substring(i, i + 5), player);
 			int value = Integer.valueOf(returnString.substring(5));
 			// String move = returnString.subString(0, 5);
 			flipBoard();
@@ -116,31 +116,31 @@ public class ChessEngine {
 			return move + alpha;
 	}
 
-	static void makeComputerMove() {
-		String move  = alphaBeta(globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, " ", 0);
-		System.out.println(move);
-		int sourceX = move.charAt(0) - '0';
-		int sourceY = move.charAt(1) - '0';
-		int targetX = move.charAt(2) - '0';
-		int targetY = move.charAt(3) - '0';
-		char capturedPiece = move.charAt(4);
-		Spot sourceSpot = Board.spots[sourceX][sourceY];
-		Spot targetSpot = Board.spots[targetX][targetY];
-		Piece tempPiece = sourceSpot.occupyingPiece;
-		String tempCode = sourceSpot.drawCode;
-		targetSpot.occupyingPiece = tempPiece;
-		targetSpot.drawCode = tempCode;
-		targetSpot.pieceColor = Board.computerColor;
-		sourceSpot.toggleEmpty();
-		targetSpot.toggleEmpty();
+	// static void makeComputerMove() {
+	// 	String move  = alphaBetaPruning(globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, " ", 0);
+	// 	System.out.println(move);
+	// 	int sourceX = move.charAt(0) - '0';
+	// 	int sourceY = move.charAt(1) - '0';
+	// 	int targetX = move.charAt(2) - '0';
+	// 	int targetY = move.charAt(3) - '0';
+	// 	char capturedPiece = move.charAt(4);
+	// 	Spot sourceSpot = Board.spots[sourceX][sourceY];
+	// 	Spot targetSpot = Board.spots[targetX][targetY];
+	// 	Piece tempPiece = sourceSpot.occupyingPiece;
+	// 	String tempCode = sourceSpot.drawCode;
+	// 	targetSpot.occupyingPiece = tempPiece;
+	// 	targetSpot.drawCode = tempCode;
+	// 	targetSpot.pieceColor = Board.computerColor;
+	// 	sourceSpot.toggleEmpty();
+	// 	targetSpot.toggleEmpty();
 		
-		if(capturedPiece != ' ')
-			targetSpot.toggleEmpty();
+	// 	if(capturedPiece != ' ')
+	// 		targetSpot.toggleEmpty();
 
-		Board.removePieceLabel(sourceSpot, sourceSpot.pieceLabel);
-		Board.removePieceLabel(targetSpot, targetSpot.pieceLabel);
-		targetSpot.pieceLabel = Board.drawPieceLabel(targetSpot, targetSpot.drawCode);
-		Board.updateBoardArray(sourceSpot.getXX(), sourceSpot.getYY(), targetSpot.getXX(), targetSpot.getYY());
-	}
+	// 	Board.removePieceLabel(sourceSpot, sourceSpot.pieceLabel);
+	// 	Board.removePieceLabel(targetSpot, targetSpot.pieceLabel);
+	// 	targetSpot.pieceLabel = Board.drawPieceLabel(targetSpot, targetSpot.drawCode);
+	// 	Board.updateBoardArray(sourceSpot.getXX(), sourceSpot.getYY(), targetSpot.getXX(), targetSpot.getYY());
+	// }
 	
 }

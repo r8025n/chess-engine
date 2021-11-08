@@ -6,10 +6,12 @@ public class ComputerPawn extends Piece {
 	private String blackCode="\u265F";
 	private String pieceColor;
 	private String name;
+	private int moves;
 
 	ComputerPawn(String c, String name) {
-		this.pieceColor=c;
+		this.pieceColor = c;
 		this.name = name;
+		moves = 0;
 	}
 		
 	String getCode() {
@@ -27,6 +29,14 @@ public class ComputerPawn extends Piece {
 
 	String getName() {
 		return name;
+	}
+
+	int getMoves() {
+		return moves;
+	}
+
+	void incrementMove() {
+		moves++;
 	}
 
 	// String possibleMoves(int x, int y) {

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public abstract class Piece extends MoveValidation{
+public abstract class Piece {
 
 	String whiteCode, blackCode;
 	String pieceColor = "";

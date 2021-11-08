@@ -9,7 +9,7 @@ public class MoveGeneration extends MoveValidation{
 			possibleMoves = kingPossibleMoves(x, y);
 		else if("Q".equals(piece) || "q".equals(piece))
 			possibleMoves = queenPossibleMoves(x, y);
-		else if("B".equals(piece) || "q".equals(piece))
+		else if("B".equals(piece) || "b".equals(piece))
 			possibleMoves = bishopPossibleMoves(x, y);
 		else if("K".equals(piece) || "k".equals(piece))
 			possibleMoves = knightPossibleMoves(x, y);
@@ -17,7 +17,7 @@ public class MoveGeneration extends MoveValidation{
 			possibleMoves = rookPossibleMoves(x, y);
 		else if("p".equals(piece))
 			possibleMoves = computerPawnPossibleMoves(x, y);
-		else
+		else if("P".equals(piece))
 			possibleMoves = humanPawnPossibleMoves(x, y);
 
 		return possibleMoves;
@@ -337,6 +337,11 @@ public class MoveGeneration extends MoveValidation{
 		// System.out.println("pawn_X pawn_Y " + x +" "+ y);
 		// System.out.println(isMoveInBound(x + 1, y));
 		// System.out.println()
+		// ComputerPawn pawn = (ComputerPawn)Board.spots[x][y].occupyingPiece;
+		// int moves = pawn.getMoves();
+		// pawn.incrementMove();
+		// Syste.out.println(moves);
+
 		if(isMoveInBound(x + 1, y) && Board.boardArray[x + 1][y].equals(" ")) {
 			// computerPawnMoves.add(new IntPair(x + 1, y));\
 			// System.out.println("Dhuksi");
@@ -345,6 +350,11 @@ public class MoveGeneration extends MoveValidation{
 			// System.out.println("bp move= " + temp);
 			computerPawnMoves += temp;
 		}
+
+		// if(moves == 0 && isMoveInBound(x + 2, y) && Board.boardArray[x + 2][y].equals(" ")){
+		// 	temp = "" + x + y + (x + 2) + y + Board.boardArray[x + 2][y];
+		// 	computerPawnMoves += temp;
+		// }
 
 		if(isMoveInBound(x + 1, y - 1) && isOppositeColor(Board.boardArray[x][y], Board.boardArray[x + 1][y - 1])) {
 			// computerPawnMoves.add(new IntPair(x + 1, y - 1));
@@ -365,9 +375,19 @@ public class MoveGeneration extends MoveValidation{
 		String humanPawnMoves = "";
 		String temp = "";
 
+		HumanPawn pawn = (HumanPawn)Board.spots[x][y].occupyingPiece;
+		int moves = pawn.getMoves();
+		pawn.incrementMove();
+		// System.out.println("pawn moves" + moves);
+
 		if(isMoveInBound(x - 1, y) && Board.boardArray[x - 1][y].equals(" ")) {
 			// humanPawnMoves.add(new IntPair(x - 1, y));
 			temp = "" + x + y + (x - 1) + y + Board.boardArray[x - 1][y];
+			humanPawnMoves += temp;
+		}
+
+		if(moves == 0 && isMoveInBound(x - 2, y) && Board.boardArray[x - 2][y].equals(" ")){
+			temp = "" + x + y + (x - 2) + y + Board.boardArray[x - 2][y];
 			humanPawnMoves += temp;
 		}
 

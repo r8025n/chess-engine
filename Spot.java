@@ -6,15 +6,16 @@ import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 
 public class Spot extends JPanel implements MouseListener{
-	private int x, y;
+	int x, y;
 	private boolean empty = true;
 	private boolean highlighted = false;
 	Piece occupyingPiece;
-	Border redBorder = BorderFactory.createLineBorder(Color.red);
+	Border redBorder = BorderFactory.createLineBorder(Color.red, 5);
 	Border emptyBorder = BorderFactory.createEmptyBorder();
 	// Board board;
 	String drawCode, pieceColor;
 	JLabel pieceLabel;
+	static Game game;
 	ArrayList<IntPair> currentPossibleMoves = new ArrayList<>();
 
 	Spot(int x,int y,Piece piece/*,Board board*/) {
@@ -30,6 +31,10 @@ public class Spot extends JPanel implements MouseListener{
 		this.addMouseListener(this);
 	}
 
+	static void setGame(Game g){
+		game = g;
+	}
+	
 	void toggleEmpty() {
 		empty = ! empty;
 	}
@@ -53,10 +58,10 @@ public class Spot extends JPanel implements MouseListener{
 	// 		return false;
 	// }
 
-	void setValues(Piece piece, String code) {
-		this.occupyingPiece = piece;
-		this.drawCode = code; 
-	}
+	// void setValues(Piece piece, String code) {
+	// 	this.occupyingPiece = piece;
+	// 	this.drawCode = code; 
+	// }
 
 	// boolean noMovePossible(){
 	// 	if(currentPossibleMoves.size() == 0)
@@ -125,36 +130,39 @@ public class Spot extends JPanel implements MouseListener{
 			if(currentPossibleMoves.size() != 0) {
 				Board.setTempValues(this, this.occupyingPiece, this.pieceLabel, this.drawCode, this.pieceColor, this.x, this.y);
 				this.toggleEmpty();
+				Board.sourceSpot = this;
 			}
 		}
 		else if(Board.tempCode != null && isHighlighted()) {
-			Board.removePieceLabel(this, this.pieceLabel);
-			setValues(Board.tempPiece, Board.tempCode);
-			this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
-			Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
-			Board.tempCode = null;
-			this.pieceColor = Board.tempColor;
-			unHighlightAll(Board.tempSpot.currentPossibleMoves);
-			Board.tempSpot.currentPossibleMoves.clear();
+			Board.destinationSpot = this;
+			game.moveVmove();
+			// Board.removePieceLabel(this, this.pieceLabel);
+			// setValues(Board.tempPiece, Board.tempCode);
+			// this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
+			// Board.removePieceLabel(Board.tempSpot, Board.tempLabel);
+			// Board.tempCode = null;
+			// this.pieceColor = Board.tempColor;
+			// unHighlightAll(Board.tempSpot.currentPossibleMoves);
+			// Board.tempSpot.currentPossibleMoves.clear();
 			
-			if(!(Board.boardArray[this.x][this.y].equals(" ")))
-				toggleEmpty();
-			Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
-			this.toggleEmpty();
-			//System.out.println(ChessEngine.calculateComputerMoves());
-			// System.out.println("Piece Name = " + this.occupyingPiece.getName());
-			if(this.occupyingPiece.getName().equals("a"))
-				King.updateComputerKingPosition(this.x, this.y);
-			else if(this.occupyingPiece.getName().equals("A"))
-				King.updateHumanKingPosition(this.x, this.y);
+			// if(!(Board.boardArray[this.x][this.y].equals(" ")))
+			// 	toggleEmpty();
+			// Board.updateBoardArray(Board.temp_x, Board.temp_y, this.x, this.y);
+			// this.toggleEmpty();
+			// //System.out.println(ChessEngine.calculateComputerMoves());
+			// // System.out.println("Piece Name = " + this.occupyingPiece.getName());
+			// if(this.occupyingPiece.getName().equals("a"))
+			// 	King.updateComputerKingPosition(this.x, this.y);
+			// else if(this.occupyingPiece.getName().equals("A"))
+			// 	King.updateHumanKingPosition(this.x, this.y);
 
-			// ChessEngine.makeComputerMove();
-			new Thread(new Runnable() {
-			     @Override
-			     public void run() {
-			     	ChessEngine.makeComputerMove();
-			     }
-			}).start();
+			// // ChessEngine.makeComputerMove();
+			// new Thread(new Runnable() {
+			//      @Override
+			//      public void run() {
+			//      	ChessEngine.makeComputerMove();
+			//      }
+			// }).start();
 		}
 		// }
 	}

@@ -13,7 +13,7 @@ public class StartWindow {
 	// public static ImageIcon icon;
     public static Container c;
     public static JButton startButton,exitButton;
-    public static Font font1,font2;
+    public static Font buttonFont,headingFont;
     public static Cursor crsr;
 
     StartWindow() {
@@ -26,14 +26,17 @@ public class StartWindow {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		newFrame.setLocation(dim.width/2-newFrame.getSize().width/2, dim.height/2-newFrame.getSize().height/2);
 
-        newFrame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        newFrame.getContentPane().setBackground(Color.black);
         
-        JLabel newLabel=new JLabel();
-        newLabel.setText("AUTONOMUS CHESS ENGINE");
-        newFrame.add(newLabel);
+        JLabel headLabel=new JLabel();
+        headLabel.setText("AUTONOMUS CHESS ENGINE");
+        headLabel.setForeground(Color.yellow);
+        newFrame.add(headLabel);
         
-        font2=new Font("ARIAL",Font.BOLD,40);
-        newLabel.setFont(font2);
+        headingFont=new Font("ARIAL",Font.BOLD,40);
+        buttonFont=new Font("Sans",Font.BOLD,35);
+
+        headLabel.setFont(headingFont);
         
         startButton=new JButton("START GAME");
         exitButton=new JButton("EXIT");
@@ -41,12 +44,11 @@ public class StartWindow {
         exitButton.setToolTipText("Press to EXIT the Game");
         newFrame.add(startButton);
         newFrame.add(exitButton);
-        font1=new Font("ARIAL",Font.ITALIC,35);
-        startButton.setFont(font1);
-        exitButton.setFont(font1);
+        startButton.setFont(buttonFont);
+        exitButton.setFont(buttonFont);
         startButton.setBackground(Color.red);
         startButton.setForeground(Color.black);
-        exitButton.setBackground(Color.LIGHT_GRAY);
+        exitButton.setBackground(Color.blue);
         exitButton.setForeground(Color.black);
         
         crsr=new Cursor(Cursor.HAND_CURSOR);
@@ -56,7 +58,8 @@ public class StartWindow {
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae){
             	newFrame.dispose();
-                GameWindow gameWindow=new GameWindow();
+                // GameWindow gameWindow=new GameWindow();
+                new Game();
             }
         });
         

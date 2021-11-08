@@ -14,6 +14,8 @@ public class Board {
 	static String humanColor = "", computerColor = "";
 	static int selectedOption;
 	static String[] option = {"black","white"};
+	static Spot sourceSpot;
+	static Spot destinationSpot;
 
 	static String boardArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
