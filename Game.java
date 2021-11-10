@@ -10,11 +10,15 @@ public class Game {
 		Spot.setGame(this);
 	}
 
-	void moveVmove(){
+	void moveVsmove(){
 		humanPlayer.makeMove();
 		new Thread(new Runnable() {
 		     @Override
 		     public void run() {
+		  //    	try{
+				// 	TimeUnit.SECONDS.sleep(2);
+				// }catch(InterruptedException i){};
+
 		     	computer.makeMove();
 		     }
 		}).start();
