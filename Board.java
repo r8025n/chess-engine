@@ -16,8 +16,33 @@ public class Board {
 	static String[] option = {"black","white"};
 	static Spot sourceSpot;
 	static Spot destinationSpot;
+	JLabel gameOver;
+
+	// possible checkmate test
 
 	static String boardArray[][] = {
+		{"r", "k", " ", "q", "a", "b", "k", "r"},
+		{"p", "p", "p", " ", "p", "p", "p", "p"},
+		{" ", " ", " ", " ", "a", " ", " ", " "},
+		{"R", " ", " ", " ", " ", " ", " ", " "},
+		{" ", " ", " ", " ", " ", " ", " ", " "},
+		{" ", " ", " ", " ", " ", "R", " ", " "},
+		{"P", "P", "P", "P", "P", "P", "P", "P"},
+		{"R", "K", "B", "Q", "A", "B", "K", "R"}
+	};
+
+	// static String boardArray[][] = {
+	// 	{"r", "k", "b", "q", "a", "b", "k", "r"},
+	// 	{"p", "p", "p", "p", "p", "p", "p", "p"},
+	// 	{" ", " ", " ", " ", " ", " ", " ", " "},
+	// 	{" ", " ", " ", " ", " ", " ", " ", " "},
+	// 	{" ", " ", " ", " ", " ", " ", " ", " "},
+	// 	{" ", " ", " ", " ", " ", " ", " ", " "},
+	// 	{"P", "P", "P", "P", "P", "P", "P", "P"},
+	// 	{"R", "K", "B", "Q", "A", "B", "K", "R"}
+	// };
+
+	static String backupArray[][] = {
 		{"r", "k", "b", "q", "a", "b", "k", "r"},
 		{"p", "p", "p", "p", "p", "p", "p", "p"},
 		{" ", " ", " ", " ", " ", " ", " ", " "},
@@ -27,6 +52,14 @@ public class Board {
 		{"P", "P", "P", "P", "P", "P", "P", "P"},
 		{"R", "K", "B", "Q", "A", "B", "K", "R"}
 	};
+
+	static void copyArray(String[][] a, String[][] b) {
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				a[i][j] = b[i][j];
+			}
+		}
+	}
 
 	static void printBoardArray() {
 		for(int i = 0; i < 8; i++){
@@ -64,7 +97,7 @@ public class Board {
 	Board(){
 		frame= new JFrame("Chess Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(700, 700);
+		frame.setSize(600, 600);
 		frame.setLayout(new GridLayout(8, 8));
 		// setComputerPieces();
 		// setEmptySpots();
@@ -78,6 +111,19 @@ public class Board {
 		setBackgroundColors();
 		frame.setVisible(true);
 		frame.setResizable(false);
+		// FinishingWindow finishingWindow = new FinishingWindow();
+		// frame.add(finisher);
+		gameOver = new JLabel();
+
+	}
+
+	void setGameOver(){
+		// gameOver.setText("Game Over");
+		// gameOver.setForeground(Color.yellow);
+		// frame.add(gameOver);
+		frame.setContentPane(new FinishingWindow());
+		frame.getContentPane().setBackground(Color.black);
+		frame.setVisible(true);
 	}
 
 	Board get(){
@@ -114,6 +160,16 @@ public class Board {
 		tempLabel = label;
 		temp_x = x;
 		temp_y = y; 
+	}
+
+	static void unsetTempValues() {
+		tempSpot = null;
+		tempPiece = null;
+		tempCode = null;
+		tempColor = null;
+		tempLabel = null;
+		temp_x = -1;
+		temp_y = -1; 
 	}
 
 
@@ -153,6 +209,7 @@ public class Board {
 	// 		}
 	// 	}
 	// }
+
 	
 	void setBackgroundColors() {
 		for(int i = 0; i < 8; i++) {
