@@ -1,10 +1,18 @@
 public class Rating {
+	static int stateRating;
+	static int len;
 
-	static int rating() {
+	static int rating(/*String moveList, int depth*/) {
+		// int len = moveList.length();
 		int rate = 0;
-		rate += rateState();
+		
+		int	stateRating = rateState();
+		rate += stateRating;
+		// rate += rateMovability(len, depth, stateRating);
 		ChessEngine.flipBoard();
-		rate -= rateState();
+		stateRating = rateState();
+		rate -= stateRating;
+		// rate -= rateMovability(len, depth, stateRating);
 		ChessEngine.flipBoard();
 
 		return (rate * -1);
@@ -39,4 +47,17 @@ public class Rating {
 
         return counter;
 	} 
+
+	// public static int rateMoveablitly(int listLength, int depth, int stateRating) {
+ //        int counter=0;
+ //        counter+=listLength;//5 pointer per valid move
+ //        if (listLength==0) {//current side is in checkmate or stalemate
+ //            if (!AlphaBetaChess.kingSafe()) {//if checkmate
+ //                counter+=-200000*depth;
+ //            } else {//if stalemate
+ //                counter+=-150000*depth;
+ //            }
+ //        }
+ //        return 0;
+ //    }
 }

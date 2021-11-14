@@ -19,7 +19,7 @@ public class ChessEngine {
 		// }
 		
 		flipBoard();
-		kingSafe = King.isKingSafe(7-King.king_X_Comp, 7-King.king_Y_Comp);
+		kingSafe = King.isKingSafe(7 - King.king_X_Comp, 7 - King.king_Y_Comp);
 		flipBoard();
 
 		if(! kingSafe){

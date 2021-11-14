@@ -3,6 +3,19 @@ public class HumanPlayer implements Player{
 	public void makeMove(){
 		Spot src = Board.sourceSpot;
 		Spot dest = Board.destinationSpot;
+		// new Thread(new Runnable() {
+		//      @Override
+		//      public void run() {
+		//      	Board.removePieceLabel(dest, dest.pieceLabel);
+		// 		setValues(dest, Board.tempPiece, Board.tempCode);
+		// 		dest.pieceLabel = Board.drawPieceLabel(dest, dest.drawCode);
+		// 		Board.removePieceLabel(src, Board.tempLabel);
+		// 		Board.tempCode = null;
+		// 		dest.pieceColor = Board.tempColor;
+		// 		dest.unHighlightAll(src.currentPossibleMoves);
+		// 		src.currentPossibleMoves.clear();
+		//      }
+		// }).start();
 		Board.removePieceLabel(dest, dest.pieceLabel);
 		setValues(dest, Board.tempPiece, Board.tempCode);
 		dest.pieceLabel = Board.drawPieceLabel(dest, dest.drawCode);
