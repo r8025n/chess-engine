@@ -1,9 +1,18 @@
 public class MoveGeneration extends MoveValidation{
+	// static boolean kingSafeLeftDiagonal, kingSafeRightDiagonal;
+	// static boolean kingSafeVertical, kingSafeHorizontal;
+	// static boolean kingSafeUpperLeftDiagonal, kingSafeLowerLeftDiagonal;
+	// static boolean kingSafeUpperRightDiagonal, kingSafeUpperLeftDiagonal;
+	// static boolean kingSafeLeftVertical, kingSafeRightVertical;
+	// static boolean kingSafeUpperHorizontal, kingSafeLowerHorizontal;
+
 
 	static String returnPossibleMoves(int x, int y){
 		String possibleMoves = "";
 		String piece = Board.boardArray[x][y];
 		// System.out.println("CurrentPiece " + piece);
+
+		// if(! isKingSafe && king)
 
 		if("A".equals(piece) || "a".equals(piece))
 			possibleMoves = kingPossibleMoves(x, y);
@@ -23,22 +32,196 @@ public class MoveGeneration extends MoveValidation{
 		return possibleMoves;
 	}
 
+	// static void checkKingSafety(int x, int y){
+	// 	flipBoard();
+	// 	kingSafeLeftDiagonally = King.kingSafeLeftDiagonally(x, y);
+	// 	kingSafeRightDiagonally = King.kingSafeRightDiagonally(x, y);
+	// 	kingSafeVertically = King.kingSafeVertically(x, y);
+	// 	kingSafeHorizontally = King.kingSafeHorizontally(x, y);
+
+	// 	kingSafeUpperLeftLeftDiagonal = King.kingSafeLeftDiagonally(x - 1, y - 1);
+	// 	kingSafeUpperLeftRightDiagonal = King.kingSafeRightDiagonally(x - 1, y - 1);
+	// 	kingSafeUpperRightLeftDiagonal = King.kingSafeLeftDiagonally(x - 1, y + 1);
+	// 	kingSafeUpperRightRightDiagonal = King.kingSafeRightDiagonally(x - 1, y + 1);
+
+	// 	kingSafeLowerLeftLeftDiagonal = King.kingSafeLeftDiagonally(x + 1, y - 1);
+	// 	kingSafeLowerLeftRightDiagonal = King.kingSafeRightDiagonally(x + 1, y - 1);
+	//  	kingSafeLowerRightLeftDiagonal = King.kingSafeLeftDiagonally(x + 1, y + 1);
+	//  	kingSafeLowerRightRightDiagonal = King.kingSafeRightDiagonally(x + 1, y + 1);
+
+	// 	kingSafeLeftVertical = King.kingSafeVertically(x, y - 1);
+	// 	kingSafeRightVertical = King.kingSafeRightVertical(x, y + 1);
+	// 	kingSafeUpperHorizontal = 
+	// 	kingSafeLowerHorizontal = 
+	// 	flipBoard();
+	// }
+
+	static boolean isComputerTurn() {
+		if(Game.turn == 1){
+			Computer.flipBoard();
+			// Board.printBoardArray();
+			return true;
+		}
+		else
+			return false;
+	}
+
+
+	// static String kingPossibleMoves(int x, int y) {
+	// 	return "";
+	// }
+	
 	static String kingPossibleMoves(int x, int y) {
 		String kingMoves = "";
 		String temp = "";
-		int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
-		int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
+		int xx = x, yy = y;
 
-		for(int i = 0; i < 8; i++){
-			if(isMoveLegal(x, y, xx[i], yy[i])) {
-				// kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
-				temp = "" + x + y + (x + xx[i]) + (y + yy[i]) + Board.boardArray[x + xx[i]][y + yy[i]];
-				kingMoves += temp;
+		if(isComputerTurn()){
+			xx = 7 - x;
+			yy = 7 - y;
+		}
+
+		if(King.kingSafeLeftDiagonally(xx, yy)) {
+			// if(isMoveLegal(xx, yy, -1, -1) && King.kingSafeHorizontally(xx - 1, yy - 1) && King.kingSafeVertically(xx - 1, yy - 1))
+			// 	kingMoves += "" + x + y + (x - 1) + (y - 1) + Board.boardArray[x - 1][y - 1];
+			// if(isMoveLegal(xx, yy, 1, 1) && King.kingSafeHorizontally(xx + 1, yy + 1) && King.kingSafeVertically(x + 1, y + 1))
+			// 	kingMoves += "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
+			try{
+			}catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Problem 1");
+			}
+
+			if(isMoveLegal(x, y, -1, -1) && King.isKingSafe(xx + 1, yy + 1)){
+				kingMoves += "" + x + y + (x - 1) + (y - 1) + Board.boardArray[x - 1][y - 1];
+			}
+			if(isMoveLegal(x, y, 1, 1)  && King.isKingSafe(xx - 1, yy - 1)){
+				kingMoves += "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
+				// System.out.println(kingMoves);
 			}
 		}
+		if(King.kingSafeRightDiagonally(xx, yy)) {
+			// if(isMoveLegal(xx, yy, -1, 1) && King.kingSafeHorizontally(xx - 1, yy + 1) && King.kingSafeVertically(xx - 1, yy + 1))
+			// 	kingMoves += "" + x + y + (x - 1) + (y + 1) + Board.boardArray[x - 1][y + 1];
+			// if(isMoveLegal(xx, yy, 1, -1) && King.kingSafeHorizontally(xx + 1, yy - 1) && King.kingSafeVertically(x + 1, y - 1))
+			// 	kingMoves += "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
+
+			try{
+				
+			}catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Problem 2");
+			}
+
+			if(isMoveLegal(x, y, -1, 1)  && King.isKingSafe(xx + 1, yy - 1)){
+				kingMoves += "" + x + y + (x - 1) + (y + 1) + Board.boardArray[x - 1][y + 1];
+			}
+			if(isMoveLegal(x, y, 1, -1) && King.isKingSafe(xx - 1, yy + 1)){
+				kingMoves += "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
+				// System.out.println(kingMoves);
+			}
+		}
+		// Computer.flipBoard();
+		if(King.kingSafeVertically(xx, yy)) {
+			// Board.printBoardArray();
+			System.out.println("vertically safe " + x + " " + y);
+			// if(isMoveLegal(xx, yy, -1, 0) && King.kingSafeHorizontally(xx - 1, yy) && King.kingSafeLeftDiagonally(xx - 1, yy) && King.kingSafeRightDiagonally(xx - 1, yy))
+			// 	kingMoves += "" + x + y + (x - 1) + (y) + Board.boardArray[x - 1][y];
+			// if(isMoveLegal(xx, yy, 1, 0) && King.kingSafeHorizontally(xx + 1, yy) && King.kingSafeLeftDiagonally(xx + 1, yy) && King.kingSafeRightDiagonally(xx + 1, yy))
+			// 	kingMoves += "" + x + y + (x + 1) + (y) + Board.boardArray[x + 1][y];
+			try{
+				
+			}catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Problem 3");
+			}
+
+			if(isMoveLegal(x, y, -1, 0) && King.isKingSafe(xx + 1, yy)){
+				kingMoves += "" + x + y + (x - 1) + (y) + Board.boardArray[x - 1][y];
+			}
+			if(isMoveLegal(x, y, 1, 0) && King.isKingSafe(xx - 1, yy)){
+				kingMoves += "" + x + y + (x + 1) + (y) + Board.boardArray[x + 1][y];
+			}
+		}
+		// Computer.flipBoard();
+		if(King.kingSafeHorizontally(xx, yy)) {
+			// if(isMoveLegal(xx, yy, 0, -1) && King.kingSafeVertically(xx, yy - 1) && King.kingSafeLeftDiagonally(xx, yy - 1) && King.kingSafeRightDiagonally(xx, yy - 1))
+			// 	kingMoves += "" + x + y + (x) + (y - 1) + Board.boardArray[x][y - 1];
+			// if(isMoveLegal(xx, yy, 0, 1) && King.kingSafeVertically(xx, yy + 1) && King.kingSafeLeftDiagonally(xx, yy + 1) && King.kingSafeRightDiagonally(xx, yy + 1))
+			// 	kingMoves += "" + x + y + (x) + (y + 1) + Board.boardArray[x][y + 1];
+			try{
+			
+			}catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Problem 4");
+			}
+
+			if(isMoveLegal(x, y, 0, -1) && King.isKingSafe(xx, yy + 1)){
+				kingMoves += "" + x + y + (x) + (y - 1) + Board.boardArray[x][y - 1];
+			}
+			if(isMoveLegal(x, y, 0, 1) && King.isKingSafe(xx, yy - 1)){
+				kingMoves += "" + x + y + (x) + (y + 1) + Board.boardArray[x][y + 1];
+			}	
+		}
+
+		if(x != xx)
+			Computer.flipBoard();
 
 		return kingMoves;
 	}
+
+
+	// static String kingPossibleMoves(int x, int y) {
+	// 	String kingMoves = "";
+	// 	String temp = "";
+	// 	// int[] xx = {0, 0, 1, 1, 1, -1, -1, -1};
+	// 	// int[] yy = {1, -1, 0, 1, -1, 0, -1, 1};
+
+	// 	// int[] leftDiagonal_X = {-1, 1};
+	// 	// int[] leftDiagonal_Y = {-1, 1};
+	// 	// int[] rightDiagonal_X = {-1, 1};
+	// 	// int[] rightDiagonal_Y = {1, -1};
+	// 	// int[] vertical_X = {1, -1};
+	// 	// int[] vertical_Y = {0, 0};
+	// 	// int[] horizontal_X = {0, 0} ;
+	// 	// int[] horizontal_Y = {1, -1};
+
+	// 	// for(int i = 0; i < 8; i++){
+	// 	// 	if(isMoveLegal(x, y, xx[i], yy[i])) {
+	// 	// 		// kingMoves.add(new IntPair(x + xx[i], y + yy[i]));
+	// 	// 		temp = "" + x + y + (x + xx[i]) + (y + yy[i]) + Board.boardArray[x + xx[i]][y + yy[i]];
+	// 	// 		kingMoves += temp;
+	// 	// 	}
+	// 	// }
+
+	// 	if(King.kingSafeLeftDiagonally(x, y)) {
+	// 		if(isMoveLegal(x, y, -1, -1) && King.kingSafeHorizontally(x - 1, y - 1) && King.kingSafeVertically(x - 1, y - 1))
+	// 			kingMoves += "" + x + y + (x - 1) + (y - 1) + Board.boardArray[x - 1][y - 1];
+	// 		if(isMoveLegal(x, y, 1, 1) && King.kingSafeHorizontally(x + 1, y + 1) && King.kingSafeVertically(x + 1, y + 1))
+	// 			kingMoves += "" + x + y + (x + 1) + (y + 1) + Board.boardArray[x + 1][y + 1];
+	// 	}
+	// 	if(King.kingSafeRightDiagonally(x, y)) {
+	// 		if(isMoveLegal(x, y, -1, 1) && King.kingSafeHorizontally(x - 1, y + 1) && King.kingSafeVertically(x - 1, y + 1))
+	// 			kingMoves += "" + x + y + (x - 1) + (y + 1) + Board.boardArray[x - 1][y + 1];
+	// 		if(isMoveLegal(x, y, 1, -1) && King.kingSafeHorizontally(x + 1, y - 1) && King.kingSafeVertically(x + 1, y - 1))
+	// 			kingMoves += "" + x + y + (x + 1) + (y - 1) + Board.boardArray[x + 1][y - 1];
+	// 	}
+	// 	// Computer.flipBoard();
+	// 	if(King.kingSafeVertically(x, y)) {
+	// 		// Board.printBoardArray();
+	// 		System.out.println("vertically safe " + x + " " + y);
+	// 		if(isMoveLegal(x, y, -1, 0) && King.kingSafeHorizontally(x - 1, y) && King.kingSafeLeftDiagonally(x - 1, y) && King.kingSafeRightDiagonally(x - 1, y))
+	// 			kingMoves += "" + x + y + (x - 1) + (y) + Board.boardArray[x - 1][y];
+	// 		if(isMoveLegal(x, y, 1, 0) && King.kingSafeHorizontally(x + 1, y) && King.kingSafeLeftDiagonally(x + 1, y) && King.kingSafeRightDiagonally(x + 1, y))
+	// 			kingMoves += "" + x + y + (x + 1) + (y) + Board.boardArray[x + 1][y];
+
+	// 	}
+	// 	// Computer.flipBoard();
+	// 	if(King.kingSafeHorizontally(x, y)) {
+	// 		if(isMoveLegal(x, y, 0, -1) && King.kingSafeVertically(x, y - 1) && King.kingSafeLeftDiagonally(x, y - 1) && King.kingSafeRightDiagonally(x, y - 1))
+	// 			kingMoves += "" + x + y + (x) + (y - 1) + Board.boardArray[x][y - 1];
+	// 		if(isMoveLegal(x, y, 0, 1) && King.kingSafeVertically(x, y + 1) && King.kingSafeLeftDiagonally(x, y + 1) && King.kingSafeRightDiagonally(x, y + 1))
+	// 			kingMoves += "" + x + y + (x) + (y + 1) + Board.boardArray[x][y + 1];
+	// 	}
+
+	// 	return kingMoves;
+	// }
 
 	static String queenPossibleMoves(int x, int y) {
 		String queenMoves = "";
@@ -258,7 +441,7 @@ public class MoveGeneration extends MoveValidation{
 				knightMoves += temp;
 			}
 		}
-		System.out.println(knightMoves);
+		// System.out.println(knightMoves);
 		return knightMoves;
 	}
 
@@ -267,7 +450,7 @@ public class MoveGeneration extends MoveValidation{
 		String temp = "";
 
 		for(int i = x + 1; i < 8; i++) {
-			if(Board.boardArray[i][y].equals(" ") || isOppositeColor(Board.boardArray[x][y], Board.boardArray[i][y])) {
+			if(Board.boardArray[i][y].equals(" ")) {
 				// rookMoves.add(new IntPair(i, y));
 				temp = "" + x + y + i + y + Board.boardArray[i][y];
 				rookMoves += temp;
@@ -314,7 +497,7 @@ public class MoveGeneration extends MoveValidation{
 		}
 
 		for(int i = y - 1; i >= 0; i--) {
-			if(Board.boardArray[x][i].equals(" ") || isOppositeColor(Board.boardArray[x][y], Board.boardArray[x][i])) {
+			if(Board.boardArray[x][i].equals(" ")) {
 				// rookMoves.add(new IntPair(x, i));
 				temp = "" + x + y + x + i + Board.boardArray[x][i];
 				rookMoves += temp;
