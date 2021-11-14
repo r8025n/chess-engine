@@ -39,6 +39,10 @@ public class HumanPawn extends Piece {
 		moves++;
 	}
 
+	void decrementMove() {
+		moves--;
+	}
+
 	// String possibleMoves(int x, int y) {
 	// 	String humanPawnMoves = "";
 	// 	String temp = "";

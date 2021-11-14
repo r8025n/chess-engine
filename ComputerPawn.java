@@ -39,6 +39,10 @@ public class ComputerPawn extends Piece {
 		moves++;
 	}
 
+	void decrementMove() {
+		moves--;
+	}
+
 	// String possibleMoves(int x, int y) {
 	// 	String computerPawnMoves = "";
 	// 	String temp = "";

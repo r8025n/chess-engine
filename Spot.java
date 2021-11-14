@@ -17,6 +17,7 @@ public class Spot extends JPanel implements MouseListener{
 	JLabel pieceLabel;
 	static Game game;
 	ArrayList<IntPair> currentPossibleMoves = new ArrayList<>();
+	int pressed = 0;
 
 	Spot(int x,int y,Piece piece/*,Board board*/) {
 		this.x = x;
@@ -121,10 +122,20 @@ public class Spot extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println(this.isEmpty());
+		Board.printBoardArray();
 		// if(Board.humanColor.equals(this.pieceColor)){
 		if(! isHighlighted() && Board.tempCode == null && ! isEmpty() && Board.humanColor.equals(this.pieceColor)){
+		// if(! isHighlighted() && this.pressed <= 1 && Board.humanColor.equals(this.pieceColor)){
 			System.out.println("x= " + x + "  y=" + y);
+			// if(this.pressed == 1){
+			// 	Board.unsetTempValues();
+			// 	this.unHighlightAll(this.currentPossibleMoves);
+			// 	this.currentPossibleMoves.clear();
+			// 	this.pressed = 0;
+			// 	this.toggleEmpty();
+			// }
 			this.highlightSpots();
+			// this.pressed++;
 			//System.out.println("Piece Name = " + this.occupyingPiece.getName());
 
 			if(currentPossibleMoves.size() != 0) {
@@ -133,9 +144,23 @@ public class Spot extends JPanel implements MouseListener{
 				Board.sourceSpot = this;
 			}
 		}
+		else if(Board.tempSpot == this){
+			Board.unsetTempValues();
+			this.toggleEmpty();
+			unHighlightAll(currentPossibleMoves);
+			this.currentPossibleMoves.clear();
+			if(Board.boardArray[this.x][this.y].equals("P")){
+				HumanPawn hp = (HumanPawn)this.occupyingPiece;
+				hp.decrementMove();
+			}
+			if(Board.boardArray[this.x][this.y].equals("P")){
+				ComputerPawn cp = (ComputerPawn)this.occupyingPiece;
+				cp.decrementMove();
+			}
+		}
 		else if(Board.tempCode != null && isHighlighted()) {
 			Board.destinationSpot = this;
-			game.moveVmove();
+			game.moveVsmove();
 			// Board.removePieceLabel(this, this.pieceLabel);
 			// setValues(Board.tempPiece, Board.tempCode);
 			// this.pieceLabel = Board.drawPieceLabel(this, this.drawCode);
