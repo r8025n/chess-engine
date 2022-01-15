@@ -8,3 +8,5 @@ As this algorithm creates a recursive game tree, it has a exponential complexity
 
 Tried to follow the oop paradigm as much as possible. The class diagram is as below:
 
+![chess engine class diagram](/resources/class-diagram.jpeg)
+
