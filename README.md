@@ -1,4 +1,6 @@
-# chess-engine
+![chess-engine_demo](/resources/chess-engine_demo.gif)
+
+# Chess-engine
 This repository contains a simple chess engine built from scratch in Java programming language. A GUI using Java Swing was created and linked to the chess engine so that human player can play against the chess engine. Following the object oriented paradigm properly was another main focus of this project.
 
 # Project Description:
